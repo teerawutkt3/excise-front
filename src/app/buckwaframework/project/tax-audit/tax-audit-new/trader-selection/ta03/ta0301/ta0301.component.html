@@ -1,0 +1,113 @@
+<!-- <app-breadcrumb [route]="breadcrumb"></app-breadcrumb> -->
+<br>
+<form class="ui grid">
+  <div class="sixteen wide column">
+    <segment header="แบบฟอร์มการตรวจสอบภาษีสรรพสามิต ตามพระราชบัญญัติภาษีสรรพสามิต พ.ศ. ๒๕๖๐" [loading]="false">
+      <div class="ui grid">
+        <div class="ui centered twelve wide column">
+          <div form [formGroup]="formGroup">
+            <div inline>
+              <div field [col]="3">
+                <label class="text-right full-width">ประเภทเอกสาร</label>
+              </div>
+              <div field [col]="3">
+                <div class="ui radio checkbox">
+                  <input type="radio" formControlName="docType" name="docType" id="docType" value="1" (change)="radioClick('1')">
+                  <label>บันทึกข้อความ</label>
+                </div>
+              </div>
+              <div field [col]="3">
+                <div class="ui radio checkbox">
+                  <input type="radio" formControlName="docType" name="docType" id="docType" value="2" (change)="radioClick('2')">
+                  <label>แบบฟอร์ม ตส.</label>
+                </div>
+              </div>
+              <div field [col]="3">
+                <select formControlName="topic" id="topic" class="ui search dropdown full-width"
+                  (change)="onSelectTopic($event.target.value)">
+                  <option value="" style="color: grey">เลือกเรื่อง</option>
+                  <option *ngFor="let item of docTypeList" value="{{item.code}}">
+                    {{item.value}}
+                  </option>
+                </select>
+              </div>
+              <div field [col]="2">
+                <label class="full-width text-right">เลขเอกสาร</label>
+              </div>
+              <div field [col]="3">
+                <select formControlName="formTsNumber" id="formTsNumber" class="ui search dropdown full-width">
+                  <option value="" style="color: grey">เลือกเลขเอกสาร</option>
+                  <option *ngFor="let item of formTsNumberList" value="{{item}}">{{item}}</option>
+                </select>
+              </div>
+              <div field [col]="3">
+                <app-button-search (click)="searchFormTSNumber()" id="searchFromTsNumber"></app-button-search>
+              </div>
+            </div>
+            <div class="inline fields">
+              <!-- <div class="eight wide field">
+                <label class="custom-label-w-20" style="text-align: right">ประเภทเอกสาร</label>
+                <div class="ui radio checkbox">
+                  <input type="radio" name="docType" id="docType1" value="1" (click)="docTypeClick('1')">
+                  <label for="docType1">บันทึกข้อความ</label>
+                </div>
+                <div class="ui radio checkbox" style="padding-left: 1em;">
+                  <input type="radio" name="docType" id="docType2" value="2" (click)="docTypeClick('2')">
+                  <label for="docType2">แบบ ตส.</label>
+                </div>
+              </div> -->
+              <!-- <div class="two wide field">
+                <label class="full-width text-right">หัวข้อเรื่อง</label>
+              </div>
+              <div class="four wide field" *ngIf="docTypeDisable">
+                <select style="width: 100%" id="topic" name="topic" class="ui search dropdown ai"
+                  (change)="onSelectTop($event)" disabled="">
+                  <option value="" style="color: grey">เลือกเรื่อง</option>
+                  <option *ngFor="let top of topic; let i = index" value="{{top}}">
+                    {{top}}
+                  </option>
+                </select>
+              </div>
+              <div class="four wide field" *ngIf="!docTypeDisable">
+                <select style="width: 100%" id="topic" name="topic" class="ui search dropdown ai"
+                  (change)="onSelectTop($event)">
+                  <option value="" style="color: grey">เลือกเรื่อง</option>
+                  <option *ngFor="let top of topic; let i = index" value="{{top}}">
+                    {{top}}
+                  </option>
+                </select>
+              </div> -->
+              <!-- <div class="two wide field">
+                <label class="full-width text-right">เลขเอกสาร</label>
+              </div>
+              <div class="four wide field">
+                <select style="width: 100%" formControlName="formTsNumber" id="formTsNumber"
+                  class="ui search dropdown ai">
+                  <option value="" style="color: grey">เลือกเลขเอกสาร</option>
+                  <option *ngFor="let item of formTsNumberList" value="{{item}}">{{item}}</option>
+                </select>
+              </div> -->
+              <!-- <div class="three wide field">
+                <app-button-search (click)="searchFormTSNumber()" id="searchFromTsNumber"></app-button-search>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- <div class="ui center aligned grid">
+        <div class="eight wide column">
+          <app-button-custom text="สร้างเอกสาร" (click)="onSubmit($event)"></app-button-custom>
+          <app-button-clear (click)="onDiscard(false)"></app-button-clear>
+        </div>
+      </div> -->
+    </segment>
+    <router-outlet></router-outlet>
+  </div>
+
+  <!-- <app-rm01 *ngIf="sent && selectedTop == 'ขออนุมัติเดินทางไปปฏิบัติราชการ'" (discard)="onDiscard($event)" class="sixteen wide column segments">
+  </app-rm01>
+
+  <app-rm02 *ngIf="sent && selectedTop == 'รายงานผลการตรวจติดตามแนะกำกับดูแล'" (discard)="onDiscard($event)" class="sixteen wide column segments">
+  </app-rm02> -->
+</form>

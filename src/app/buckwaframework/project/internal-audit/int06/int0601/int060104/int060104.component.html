@@ -1,0 +1,135 @@
+<segment [loading]="loading">
+  <div form [formGroup]="formGroup">
+    <div inline>
+      <div field [col]="16">
+        <table id="dataTableDailySummary" class="ui small celled table striped selectable   nowrap" [ngClass]="{'scrollX': formGroup.get('iaAuditIncD1List').value.length != 0}" style="width:100%">
+          <thead>
+            <tr style="text-align: center !important">
+              <th>ลำดับ</th>
+              <th>เลขที่ควบคุมเอกสาร</th>
+              <th>เลขที่ใบเสร็จ</th>
+              <th>วันเดือนปี</th>
+              <th>รายการภาษี</th>
+              <th>รหัสภาษี</th>
+              <th>จำนวนเงิน</th>
+              <th>กรอกเลขที่ใบเสร็จในแบบ (ภส. 03-07)</th>
+              <th>มีแบบคำขอร้องแสตมป์ <br>สุรา ยา เครื่องดื่ม</th>
+              <th>งบเดือน</th>
+              <th>หมายเหตุ / ผลการตรวจ</th>
+            </tr>
+          </thead>
+          <tbody formArrayName="iaAuditIncD1List">
+            <ng-container *ngIf="formGroup.controls">
+              <ng-container *ngIf="formGroup.controls.iaAuditIncD1List.controls!=0">
+
+                <tr [formGroupName]="i"
+                  *ngFor="let item of formGroup.controls.iaAuditIncD1List.controls; let i = index;">
+                  <td class="text-center">{{i+1}}</td>
+                  <!-- <td class="text-center">{{item.get('docCtlNo').value | isEmpty }}</td> -->
+                  <td class="text-center">{{ item.get('docCtlNo').value | isEmpty }}</td>
+                  <td class="text-center">{{ item.get('receiptNo').value | isEmpty }}</td>
+                  <td class="text-center">{{ item.get('receiptDate').value ? (item.get('receiptDate').value | dateString) : '-' }}</td>
+                  <td class="text-left">{{ item.get('taxName').value | isEmpty }}</td>
+                  <td class="text-center">{{ item.get('taxCode').value | isEmpty }}</td>
+                  <td class="text-right">{{ item.get('amount').value | decimalFormat:"###,###.00" }}</td>
+                  <td class="text-center">
+                    <div class="ui form">
+                      <div class="inline fields">
+                        <div class="field">
+                          <div class="ui radio checkbox">
+                            <input type="radio" formControlName="checkTax0307" id="checkTax0307" value="1"
+                              (change)="blur()">
+                            <label>ถูกต้อง</label>
+                          </div>
+                        </div>
+                        <div class="field">
+                          <div class="ui radio checkbox">
+                            <input type="radio" formControlName="checkTax0307" id="checkTax0307" value="2"
+                              (change)="blur()">
+                            <label>พบประเด็น</label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="text-center">
+                    <div class="ui form">
+                      <div class="inline fields">
+                        <div class="field">
+                          <div class="ui radio checkbox">
+                            <input type="radio" formControlName="checkStamp" id="checkStamp" value="1"
+                              (change)="blur()">
+                            <label>ถูกต้อง</label>
+                          </div>
+                        </div>
+                        <div class="field">
+                          <div class="ui radio checkbox">
+                            <input type="radio" formControlName="checkStamp" id="checkStamp" value="2"
+                              (change)="blur()">
+                            <label>พบประเด็น</label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="text-center">
+                    <div class="ui form">
+                      <div class="inline fields">
+                        <div class="field">
+                          <div class="ui radio checkbox">
+                            <input type="radio" formControlName="checkTax0704" id="checkTax0704" value="1"
+                              (change)="blur()">
+                            <label>ถูกต้อง</label>
+                          </div>
+                        </div>
+                        <div class="field">
+                          <div class="ui radio checkbox">
+                            <input type="radio" formControlName="checkTax0704" id="checkTax0704" value="2"
+                              (change)="blur()">
+                            <label>พบประเด็น</label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <input type="text" formControlName="remarkTax" id="remarkTax" (blur)="blur()"
+                      class="ui large full-width">
+                  </td>
+                </tr>
+              </ng-container>
+              <ng-container *ngIf="formGroup.controls.iaAuditIncD1List.controls==0">
+                <tr class="text-center">
+                  <td colspan="11">ไม่พบข้อมูล</td>
+                </tr>
+              </ng-container>
+            </ng-container>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div inline>
+      <div field [col]="3">
+        <h4 class="text-right full-width">สรุปผลการตรวจกับแบบภาษี </h4>
+      </div>
+
+    </div>
+
+    <div inline>
+      <div field [col]="3">
+        <label class="text-right full-width">ข้อตรวจพบ/ข้อสังเกต<br>(ข้อเท็จจริง/Condition) :</label>
+      </div>
+      <div field [col]="9">
+        <textarea formControlName="d4ConditionText" (blur)="blur()" rows="4" style="resize: none" maxlength="200"></textarea>
+      </div>
+    </div>
+    <div inline>
+      <div field [col]="3">
+        <label class="text-right full-width">สิ่งที่ควรจะเป็น<br>(หลักเกณฑ์/Criteria) :</label>
+      </div>
+      <div field [col]="9">
+        <textarea formControlName="d4CriteriaText" (blur)="blur()" rows="4" style="resize: none" maxlength="200"></textarea>
+      </div>
+    </div>
+  </div>
+</segment>

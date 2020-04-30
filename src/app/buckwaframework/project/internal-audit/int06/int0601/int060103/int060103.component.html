@@ -1,0 +1,200 @@
+<segment [loading]="loading">
+  <div form [formGroup]="formGroup">
+
+    <table class="ui celled table small" [hidden]="!isShowTb">
+      <thead>
+        <tr style="text-align: center !important">
+          <th>ลำดับ</th>
+          <th>รหัสภาษี</th>
+          <th>รายการภาษี</th>
+          <th>จำนวนเงิน</th>
+          <th>จำนวนราย</th>
+          <th>ผลการตรวจกับสรุปเงินค่าภาษี</th>
+          <th>หมายเหตุ</th>
+        </tr>
+      </thead>
+      <tbody formArrayName="iaAuditIncD3List">
+        <ng-container *ngIf="formGroup.controls">
+          <ng-container *ngIf="formGroup.controls.iaAuditIncD3List.controls!=0">
+            <tr [formGroupName]="i"
+              *ngFor="let item of formGroup.controls.iaAuditIncD3List.controls; let i = index;let first = first;let last = last">
+              <td class="text-center"> {{ i+1 }}</td>
+              <td class="text-center"><a href="javascript:void(0)"
+                  (click)="taxCodeDtl(item.get('taxCode').value)">{{ item.get('taxCode').value | isEmpty }}</a></td>
+              <td class="text-left">{{ item.get('taxName').value | isEmpty }}</td>
+              <td class="text-right">{{ item.get('amount').value | decimalFormat:"###,###.00" }}</td>
+              <td class="text-right">{{ item.get('countReceipt').value | decimalFormat:"###,###" }}</td>
+              <td class="text-center">
+                <div class="ui form">
+                  <div class="inline fields">
+                    <div class="field">
+                      <div class="ui radio checkbox">
+                        <input type="radio" formControlName="auditCheck" id="auditCheck" value="1"
+                          (change)="changeAudit()">
+                        <label>ถูกต้อง</label>
+                      </div>
+                    </div>
+                    <div class="field">
+                      <div class="ui radio checkbox">
+                        <input type="radio" formControlName="auditCheck" id="auditCheck" value="2"
+                          (change)="changeAudit()">
+                        <label>ไม่ถูกต้อง</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <input type="text" formControlName="remark" id="remark" (blur)="blurRemark()"
+                  class="ui large full-width" maxlength="500">
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td class="text-center">รวม</td>
+              <td class="text-right">{{ sumAmount | decimalFormat:"###,###.00" }}</td>
+              <td class="text-right">{{ sumCountReceipt | decimalFormat:"###,###" }}</td>
+              <td></td>
+              <td>
+                <div class="ui right aligned grid">
+                  <div class=" column">
+                    <app-button-detail (click)="showAllDtl()"></app-button-detail>&nbsp;&nbsp;
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </ng-container>
+        </ng-container>
+        <ng-container *ngIf="formGroup['controls'].iaAuditIncD3List['controls']==0">
+          <tr class="text-center">
+            <td colspan="14">ไม่พบข้อมูล</td>
+          </tr>
+        </ng-container>
+
+      </tbody>
+    </table>
+
+
+    <table class="ui celled table small" [hidden]="isShowTb">
+      <thead>
+        <tr style="text-align: center !important">
+          <th>ลำดับ</th>
+          <th>วันเดือนปี</th>
+          <th>รายการภาษี</th>
+          <th>รหัสภาษี</th>
+          <th>จำนวนเงิน</th>
+          <th style="width:120px;">#</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngIf="dataTable2.length!=0">
+          <tr *ngFor="let item of dataTable2; let i=index">
+            <td class="text-center">{{i+1}}</td>
+            <td class="text-center">{{ item.receiptDate ? (item.receiptDate | dateString) : '-' }}</td>
+            <td class="text-left">{{ item.incomeName | isEmpty }}</td>
+            <td class="text-center">{{ item.incomeCode | isEmpty }}</td>
+            <td class="text-right">{{ item.netTaxAmt | decimalFormat:"###,###.00" }}</td>
+            <td class="text-center">#</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="text-center">รวม</td>
+            <td class="text-right">{{ sumAmountTable2 | decimalFormat:"###,###.00" }}</td>
+            <td class="text-center">
+              <app-button-back (click)="showMaster()"></app-button-back>
+            </td>
+          </tr>
+        </ng-container>
+        <ng-container *ngIf="dataTable2.length==0">
+          <tr class="text-center">
+            <td colspan="14">ไม่พบข้อมูล</td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+
+
+
+    <div inline>
+      <div field [col]="3">
+        <p class="text-right full-width" [hidden]="!isShowTb">ข้อตรวจพบ/ข้อสังเกต<br>(ข้อเท็จจริง/Condition) :</p>
+      </div>
+      <div field [col]="9">
+        <textarea rows="4" style="resize: none" formControlName="d3ConditionText" id="d3ConditionText" maxlength="200"
+          (blur)=" onBlurTextArea()"></textarea>
+      </div>
+    </div>
+    <div inline>
+      <div field [col]="3">
+        <p class="text-right full-width" [hidden]="!isShowTb">สิ่งที่ควรจะเป็น<br>(หลักเกณฑ์/Criteria) :</p>
+      </div>
+      <div field [col]="9">
+        <textarea rows="4" style="resize: none" formControlName="d3CriteriaText" id="d3CriteriaText" maxlength="200"
+          (blur)=" onBlurTextArea()"></textarea>
+      </div>
+    </div>
+
+  </div>
+</segment>
+
+<ui-modal [id]="'taxCodeDtl'" type="custom" size="large">
+  <div class="ui header">
+    ตรวจสอบยอดเงินตามรหัสภาษี
+  </div>
+  <div class="content">
+
+    <!-- <table id="tableDetail1" class="ui celled table small" style="width: 100%;">
+      <thead>
+        <tr style="text-align: center !important">
+          <th>ลำดับ</th>
+          <th>วันเดือนปี</th>
+          <th>รายการภาษี</th>
+          <th>รหัสภาษี</th>
+          <th>จำนวนเงิน</th>
+        </tr>
+      </thead>
+    </table> -->
+    <div class="ui segment {{loadingModal ? 'loading' : ''}}" style="width: 100%;">
+      <table class="ui celled table small" style="width: 100%;">
+        <thead>
+          <tr style="text-align: center !important">
+            <th>ลำดับ</th>
+            <th>วันเดือนปี</th>
+            <th>รายการภาษี</th>
+            <th>รหัสภาษี</th>
+            <th>จำนวนเงิน</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngIf="dataTable1.length!=0">
+            <tr *ngFor="let item of dataTable1; let i=index">
+              <td class="text-center">{{i+1}}</td>
+              <td class="text-center">{{ item.receiptDate ? (item.receiptDate | dateString) : '-' }}</td>
+              <td class="text-left">{{ item.incomeName | isEmpty }}</td>
+              <td class="text-center">{{ item.incomeCode | isEmpty }}</td>
+              <td class="text-right">{{ item.netTaxAmt | decimalFormat:"###,###.00" }}</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td class="text-center">รวม</td>
+              <td></td>
+              <td class="text-right">{{ sumAmountTable1 | decimalFormat:"###,###.00" }}</td>
+            </tr>
+          </ng-container>
+          <ng-container *ngIf="dataTable1.length==0">
+            <tr class="text-center">
+              <td colspan="14">ไม่พบข้อมูล</td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="actions">
+    <app-button-cancel class="deny"></app-button-cancel>
+  </div>
+</ui-modal>

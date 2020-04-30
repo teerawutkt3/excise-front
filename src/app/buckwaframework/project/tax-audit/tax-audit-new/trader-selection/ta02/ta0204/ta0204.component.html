@@ -1,0 +1,182 @@
+<with-breadcrumb [breadcrumb]="breadcrumb">
+  <segment header="รับทราบแผนประจำปีและแจกจ่ายงานให้ฝ่ายฯ">
+    <div form>
+      <div inline>
+        <div field [col]="4"></div>
+        <div field [col]="3">
+          <label class="text-right full-width">ปีงบประมาณ</label>
+        </div>
+        <div field [col]="2">
+          <div class="ui calendar full-width" id="date1">
+            <div class="ui input left icon">
+              <i class="calendar alternate outline icon"></i>
+              <input type="text" autocomplete="off" placeholder="ปปปป" id="inputDate1" [(ngModel)]="yearSelect">
+            </div>
+          </div>
+        </div>
+        <div field [col]="3">
+          <!-- <app-button-search (click)="searchPlan()"></app-button-search> -->
+        </div>
+        <!-- <div field [col]="4">
+          <div class="text-right full-width">
+            <app-button-custom style="margin-right: 0;" color="primary" text="เลือกรายนอกแผน"
+              routerLink="/tax-audit-new/ta02/02/se02"></app-button-custom>
+            <app-button-custom style="margin-right: 0;" color="primary" text="วางแผน" (click)="goToPlan()">
+            </app-button-custom>
+            <app-button-custom color="primary" text="ปฏิทิน" routerLink="/tax-audit-new/ta02/03"></app-button-custom>
+          </div>
+        </div> -->
+      </div>
+    </div>
+<!-- button line  -->
+    <div class="ui center aligned grid">
+        <div class="eight wide column">
+          <app-button-search (click)="searchPlan()"></app-button-search>
+          <app-button-custom text="รับทราบแผน" (click)="onReceive()" [disabled]="!isRecieve"></app-button-custom>
+          <app-button-custom text=" มอบหมายงาน" (click)="onAssignList()" [disabled]="!isAssing"></app-button-custom>
+        </div>
+      </div>
+
+    <!-- <div class="ui grid">
+      <div class="sixteen wide column"> -->
+    <table class="ui small celled table  striped selectable " style="width:100%" id="tablePlan">
+      <thead class="text-center">
+        <tr>
+            <th class="text-center"><input type="checkbox" class="ui checkbox" id="checkAll"
+              (change)="checkAll($event)" [checked]="isCheckAll" > </th>
+          <th class="text-center">ลำดับ</th>
+          <th class="text-center">เลขทะเบียนสรรพสามิต</th>
+          <!-- <th  class="text-center">ชื่อผู้ประกอบการ</th> -->
+          <th class="text-center">ชื่อโรงอุตสาหกรรม/สถานบริการ</th>
+          <!-- <th  class="text-center">ที่อยู่โรงอุตสาหกรรม/สถานบริการ</th> -->
+          <th class="text-center">ภาค</th>
+          <th class="text-center">พื้นที่</th>
+          <!-- <th  class="text-center">พิกัด</th> -->
+          <!-- <th  class="text-center">ขั้นตอนการทำงาน</th>
+              <th class="text-center" style="max-width: 150px !important;">ประเภทการตรวจ</th>
+              <th class="text-center">วันที่ออกตรวจ</th>
+              <th class="text-center">Assign งาน</th>
+              <th class="text-center">ตรวจสอบภาษี</th> -->
+          <th class="text-center">ส่วนที่รับผิดชอบ</th>
+          <th class="text-center">ฝ่ายที่รับผิดชอบ</th>
+          <th class="text-center">ผู้บันทึกคัดเลือก</th>
+          <th class="text-center">แก้ไขฝ่าย</th>
+        </tr>
+      </thead>
+    </table>
+    <br>
+    <!-- <div class="ui center aligned grid">
+      <div class="eight wide column">
+
+        <app-button-custom text="รับทราบแผน" (click)="onReceive()" [disabled]="!isRecieve"></app-button-custom>
+        <app-button-custom text=" มอบหมายงาน" (click)="onAssignList()" [disabled]="!isAssing"></app-button-custom>
+      </div>
+    </div> -->
+    <!-- </div>
+    </div> -->
+  </segment>
+</with-breadcrumb>
+
+<!-- modal -->
+<div class="ui mini modal " id="view">
+  <i class="close icon"></i>
+  <div class="header">
+    <i class="file outline icon"></i> วันที่ออกตรวจ
+  </div>
+  <div class="content">
+    <b>บริษัท นิสสัน มอเตอร์ เอเชีย แปซิฟิค จำกัด</b>
+    <p> 20 ธันวาคม - 30 ธันวาคม</p>
+    <p>รายชื่อผู้ตรวจ</p>
+
+  </div>
+</div>
+
+<ui-modal [id]="'editModal'" type="custom"  [size]="'fullscreen'">
+  <div class="ui header">
+    เปลี่ยนผู้รับผิดชอบระดับส่วน/ฝ่าย
+  </div>
+  <br>
+  <div>
+  <!-- <div class="content scrolling"> -->
+    <form form [formGroup]="formEdit">
+      <div inline>
+        <div field [col]="3"><label class="full-width text-right">ทะเบียนสรรพสามิต</label></div>
+        <div field [col]="4"><input class="custom-readonly" readonly="" type="text" formControlName="newRegId"
+            id="newRegId"></div>
+        <div field [col]="4"><label class="full-width text-right">ชื่อโรงอุตสาหกรรม/สถานบริการ</label></div>
+        <div field [col]="4"><input class="custom-readonly" readonly="" type="text" formControlName="cusFullname"
+            id="cusFullname"></div>
+      </div>
+      <div inline>
+        <div field [col]="3"><label class="full-width text-right">สรรพสามิตภาค</label></div>
+        <div field [col]="4"><input class="custom-readonly" readonly="" type="text" formControlName="secDesc"
+            id="secDesc"></div>
+        <div field [col]="4"><label class="full-width text-right">ส่วนฯที่รับผิดชอบ</label></div>
+        <!-- <div field [col]="4"><input type="text"></div> -->
+        <div field [col]="4">
+          <select class="ui dropdown full-width" id="officeCode" name="officeCode" formControlName="officeCode" (change)="sectorChange($event)">
+            <!-- <option value="">ทั้งหมด</option> -->
+            <option *ngFor="let item of taxDepartment" value="{{item.officeCode}}" >{{item.deptShortName}}</option>
+          </select>
+        </div>
+      </div>
+      <div inline>
+        <div field [col]="3"><label class="full-width text-right">สรรพสามิตพื้น</label></div>
+        <div field [col]="4"><input class="custom-readonly" readonly="" type="text" formControlName="areaDesc"
+            id="areaDesc"></div>
+        <div field [col]="4"><label class="full-width text-right">ฝ่ายฯที่รับผิดชอบ</label></div>
+        <div  field [col]="4">
+          <select class="ui dropdown full-width" id="auSubdeptCode" name="auSubdeptCode" formControlName="auSubdeptCode">
+            <!-- <option value="">ทั้งหมด</option> -->
+            <option *ngFor="let item of areas" value="{{item.subdeptCode}}">{{item.subdeptShortName}}</option>
+          </select>
+        </div>
+        <!-- <div field [col]="4"><input type="text"></div> -->
+      </div>
+    </form>
+    <!-- scolling -->
+  </div>
+  <br>
+  <div class="actions">
+    <app-button-save (click)="saveAssign()"></app-button-save>
+    <app-button-cancel class="deny"></app-button-cancel>
+  </div>
+</ui-modal>
+
+
+<ui-modal [id]="'assignAllModal'" type="custom"  [size]="'large'">
+    <div class="ui header">
+      เปลี่ยนผู้รับผิดชอบระดับส่วน/ฝ่าย
+    </div>
+    <br>
+    <div>
+    <!-- <div class="content scrolling"> -->
+      <form form [formGroup]="formEdit">
+
+        <div inline>
+          <div field [col]="4"><label class="full-width text-right">ส่วนฯที่รับผิดชอบ</label></div>
+          <!-- <div field [col]="4"><input type="text"></div> -->
+          <div field [col]="4">
+              <input class="custom-readonly" readonly="" type="text" formControlName="assignOfficeCode"
+              id="assignOfficeCode">
+            <!-- <select class="ui dropdown full-width" id="assignOfficeCode" name="assignOfficeCode" formControlName="assignOfficeCode" (change)="sectorChange($event)">
+              <option *ngFor="let item of taxDepartment" value="{{item.officeCode}}" >{{item.deptShortName}}</option>
+            </select> -->
+          </div>
+          <div field [col]="2"><label class="full-width text-right">ฝ่ายฯที่รับผิดชอบ</label></div>
+          <div  field [col]="4">
+            <select class="ui dropdown full-width" id="auSubdeptCodeAll" name="auSubdeptCodeAll" formControlName="auSubdeptCode">
+              <option *ngFor="let item of areas" value="{{item.subdeptCode}}">{{item.subdeptShortName}}</option>
+            </select>
+          </div>
+          
+        </div>
+      </form>
+      <!-- scolling -->
+    </div>
+    <br>
+    <div class="actions">
+      <app-button-save (click)="saveAssignList()"></app-button-save>
+      <app-button-cancel class="deny"></app-button-cancel>
+    </div>
+  </ui-modal>

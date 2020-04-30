@@ -1,0 +1,100 @@
+<app-breadcrumb [route]="breadcrumb"></app-breadcrumb>
+
+<div class="ui grid" id="tbUpload">
+  <div class="sixteen wide column">
+    <segment header="อัพโหลดไฟล์ตรวจสอบงบทดลองกระทบยอด เดบิต เครดิต บัญชีแยกประเภท" [loading]="false">
+      <!-- form upload -->
+      <form id="upload-form" class="ui form" (submit)="onUpload($event)" ngNativeValidate>
+        <div class="inline fields ui centered grid">
+          <div class="one wide field "></div>
+          <div class="three wide field required">
+            <label class="text-right full-width">รายงานงบทดลอง</label>
+          </div>
+          <div class="six wide field ">
+            <input id="fileExel" type="file" name="fileExel" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel"
+              (change)="onChangeUpload($event)" required>
+          </div>
+          <div class="three wide field ">
+            <app-button-upload btnType="submit"></app-button-upload>
+          </div>
+        </div>
+      </form>
+      <!-- form upload2 -->
+      <form id="upload-form2" class="ui form" (submit)="onUpload2($event)" ngNativeValidate>
+        <div class="inline fields ui centered grid">
+          <div class="one wide field "></div>
+          <div class="three wide field required">
+            <label class="text-right full-width">
+              รายงานบัญชีแยกประเภท
+            </label>
+          </div>
+          <div class="six wide field ">
+            <input id="fileExel" type="file" name="fileExel" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel"
+              (change)="onChangeUpload($event)" required>
+          </div>
+          <div class="three wide field">
+            <app-button-upload btnType="submit"></app-button-upload>
+          </div>
+        </div><br>
+      </form>
+      <div class="ui center aligned grid">
+        <div class="sixteen wide column">
+          <app-button-check (click)="checkData()"></app-button-check>&nbsp;
+          <!-- <app-button-cancel btnType="reset" (click)="clearData()"></app-button-cancel> -->
+        </div>
+      </div>
+
+      <table id="dataTable3" class="ui small celled table aligned hover striped selectable nowrap" style="width: 100%">
+        <thead>
+          <tr>
+            <th rowspan="2" style="text-align: center !important">เลขที่บัญชีแยกประเภท</th>
+            <th rowspan="2" style="text-align: center !important">ชื่อบัญชีแยกประเภท</th>
+            <th rowspan="2" style="text-align: center !important">ยอดยกมา</th>
+            <th rowspan="2" style="text-align: center !important">เดบิต</th>
+            <th rowspan="2" style="text-align: center !important">เครดิต</th>
+            <th rowspan="2" style="text-align: center !important">ยอดยกไป</th>
+            <th colspan="3" style="text-align: center !important">แยกประเภท</th>
+            <th rowspan="2" style="text-align: center !important">ผลต่าง</th>
+          </tr>
+          <tr>
+            <th style="text-align: center !important; border-left: 1px solid rgba(34,36,38,.1) !important">เดบิต</th>
+            <th style="text-align: center !important">เครดิต</th>
+            <th style="text-align: center !important">ยอดยกไป</th>
+          </tr>
+        </thead>
+      </table>
+
+      <div class="ui centered grid">
+        <div class="ui form fourteen wide column">
+          <!-- row1 -->
+          <div class="inline fields">
+            <div class="four wide field">
+              <label class="text-right full-width">ข้อตรวจพบ/ข้อสังเกต <br>
+                (ข้อเท็จจริง/Condition) :</label>
+            </div>
+            <div class="ten  wide field">
+              <textarea rows="3" style="width: 100%;"></textarea>
+            </div>
+          </div>
+          <!-- row2 -->
+          <div class="inline fields">
+            <div class="four wide field">
+              <label class="text-right full-width">สิ่งที่ควรจะเป็น <br> (หลักเกณฑ์/Criteria)
+                :</label>
+            </div>
+            <div class="ten  wide field">
+              <textarea rows="3" style="width: 100%;"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ui center aligned grid">
+        <div class="sixteen wide column">
+          <app-button-save></app-button-save>
+          <app-button-export (click)="export()"></app-button-export>
+        </div>
+      </div>
+    </segment>
+  </div>
+</div>

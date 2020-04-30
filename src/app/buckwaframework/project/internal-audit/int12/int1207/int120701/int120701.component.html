@@ -1,0 +1,155 @@
+<app-breadcrumb [route]="breadcrumb"></app-breadcrumb>
+
+<segment header="บันทึกคำขอเบิก" [loading]="false">
+  <div class="ui form">
+    <div class="ui attached">
+      <div class="inline fields">
+        <div class="one wide field">
+          <label class="full-width text-right">เลือกแบบขอเบิก</label>
+        </div>
+        <div class="four wide field">
+          <select id="bill" name="bill" class="ui fluid dropdown" [(ngModel)]="bills">
+            <option value="">กรุณาเลือก</option>
+            <option value="1">แบบขอเบิกเงินค่าเช่าบ้าน (แบบ 6006)</option>
+            <option value="2">ใบเบิกเงินสวัสดิการเกี่ยวกับการรักษาพยาบาล (แบบ 7131)</option>
+          </select>
+        </div>
+        <div class="two wide field ">
+          <label class="text-right full-width">ตั้งแต่วันที่
+          </label>
+        </div>
+        <div class="two wide field">
+          <div class="ui calendar" id="calendar1" style="width:100%">
+            <div class="ui input left icon">
+              <i class="calendar alter nate outline icon"></i>
+              <input type="text" placeholder="วว/ดด/ปปปป" name="endDate" id="endDate" readonly>
+            </div>
+          </div>
+        </div>
+        <div class="one wide field">
+          <label class="text-center full-width">ถึงวันที่</label>
+        </div>
+        <div class="two wide field">
+          <div class="ui calendar" id="calendar2" style="width:100%">
+            <div class="ui input left icon">
+              <i class="calendar alter nate outline icon"></i>
+              <input type="text" placeholder="วว/ดด/ปปปป" name="endDate" id="endDate" readonly>
+            </div>
+          </div>
+        </div>
+        <div class="three wide field">
+          <app-button-search (click)="shearch11(bills)"></app-button-search>
+          <button class="ui primary mini button" (click)="createbill(bills)">
+            <i class="plus icon"></i>
+            ทำรายการ
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div *ngIf="table1">
+  <table id="table1" class="ui small celled table nowrap striped selectable " style="width: 100%" >
+      <thead class="text-center">								
+          <tr>
+              <th>ลำดับที่</th>
+              <th>ชื่อผู้เบิก</th>
+              <th>ตำแหน่ง</th>
+              <th>สังกัด</th>
+              <th>ประเภทการจ่ายเงิน</th>
+              <th>จำนวนเดือน</th>
+              <th>จำนวนใบเสร็จรับเงิน</th>
+              <th>จำนวนเงิน (บาท)</th>
+              <th>วันที่บันทึกคำขอเบิก</th>
+              <th>จัดการ</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr>
+              <td style="text-align: center">1</td>
+              <td>อุตสาหะ มนตรี</td>
+              <td>ผู้ตรวจสอบภาษีภาคที่ 1</td>
+              <td style="text-align: center">-</td>
+              <td>ค่าเช่าบ้าน</td>
+              <td style="text-align: center">2</td>
+              <td style="text-align: center">2</td>
+              <td style="text-align: center">12000</td>
+              <td style="text-align: center">12/2/2561</td>
+              <td style="text-align: center"><app-button-detail></app-button-detail></td>
+          </tr>
+          <tr>
+              <td style="text-align: center">2</td>
+              <td>ชนาเทพ ธนากร</td>
+              <td>ผู้ตรวจสอบภาษีภาคที่ 1</td>
+              <td style="text-align: center">-</td>
+              <td>ค่าผ่อนชำระเงินกู้</td>
+              <td style="text-align: center">3</td>
+              <td style="text-align: center">3</td>
+              <td style="text-align: center">32000</td>
+              <td style="text-align: center">17/4/2561</td>
+              <td style="text-align: center"><app-button-detail></app-button-detail></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+      <div *ngIf="table2">
+      <table id="table1" class="ui small celled table nowrap striped selectable scrollX" style="width: 100%" >
+          <thead class="text-center">	                                   
+              <tr>
+                  <th>ลำดับที่</th>
+                  <th>ชื่อผู้เบิก</th>
+                  <th>ตำแหน่ง</th>
+                  <th>สังกัด</th>
+                  <th>ขอเบิกเงินค่ารักษาพยาบาลของ</th>
+                  <th>ป่วยเป็นโรค</th>
+                  <th>ได้เข้ารับการตรวจรักษาพยาบาลจาก (ชื่อสถานพยาบาล)</th>
+                  <th>เป็นสถานพยาบาลของ</th>
+                  <th>ตั้งแต่วันที่</th>
+                  <th>ถึงวันที่</th>
+                  <th>เป็นเงินรวมทั้งสิ้น</th>
+                  <th>มีสิทธิได้รับเงินค่ารักษาพยาบาล</th>
+                  <th>สิทธิได้รับเงินค่ารักษาพยาบาลจำนวน</th>
+                  <th>วันที่บันทึกคำขอเบิก</th>
+                  <th>จัดการ</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr>
+                  <td style="text-align: center" >1</td>
+                  <td>กฤตติกา ธนาคม </td>
+                  <td>ผู้ตรวจสอบภาษีภาคที่ 1</td>
+                  <td>สำนักงานสรรพสามิตภาคที่ 1</td>
+                  <td>ตนเอง</td>
+                  <td>โรคไข้หวัด</td>
+                  <td>โรงพยาบาลศิริราช</td>
+                  <td>ทางราชการ</td>
+                  <td style="text-align: center">17/4/2561</td>
+                  <td style="text-align: center">20/4/2561</td>
+                  <td style="text-align: center">200,000 บาท</td>
+                  <td>ตามสิทธิ</td>
+                  <td style="text-align: center">100,000</td>
+                  <td style="text-align: center">20/4/2561</td>
+                  <td style="text-align: center"><app-button-detail></app-button-detail></td>
+              </tr>
+              <tr>
+                  <td style="text-align: center">2</td>
+                  <td>โชติกา ปาลิดา</td>
+                  <td>ผู้ตรวจสอบภาษีภาคที่ 1</td>
+                  <td>สำนักงานสรรพสามิตภาคที่ 1</td>
+                  <td>บิดา</td>
+                  <td>โรคข้อเข่าเสื่อม</td>
+                  <td>โรงพยาบาลศิริราช</td>
+                  <td>ทางราชการ</td>
+                  <td style="text-align: center">17/4/2561</td>
+                  <td style="text-align: center">20/4/2561</td>
+                  <td style="text-align: center">200,000 บาท</td>
+                  <td>ตามสิทธิ</td>
+                  <td style="text-align: center">100,000</td>
+                  <td style="text-align: center">20/4/2561</td>
+                  <td style="text-align: center"><app-button-detail></app-button-detail></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+</segment>

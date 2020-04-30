@@ -1,0 +1,90 @@
+<segment [loading]="loading">
+  <form form [formGroup]="formDataT1">
+    <div style="overflow-x: auto; margin-top: 15px; margin-bottom: 16px">
+
+      <table class="ui small celled table selectable">
+        <thead class="text-center">
+          <tr>
+            <th>#</th>
+            <th>ลำดับ</th>
+            <th>เลขที่ควบคุมเอกสาร</th>
+            <th>เลขที่ใบเสร็จ</th>
+            <th>ตรวจสอบเลขที่แบบพิมพ์</th>
+            <th>วันเดือนปี</th>
+            <th>รายการภาษี</th>
+            <th>รหัสภาษี</th>
+            <th>จำนวนเงิน</th>
+            <th>หมายเหตุผลการตรวจ</th>
+          </tr>
+        </thead>
+        <tbody formArrayName="iaAuditIncD1List">
+          <ng-container *ngIf="formDataT1.controls">
+            <ng-container *ngIf="formDataT1.controls.iaAuditIncD1List.controls!=0">
+              <tr [formGroupName]="i"
+                *ngFor="let item of formDataT1.controls.iaAuditIncD1List.controls; let i = index;let first = first;let last = last">
+                <td class="fixed-column text-center"><app-button-custom color="green" icon="plus icon" (click)="editList(i,item.get('receiptNo').value)"></app-button-custom></td>
+                <td class="fixed-column text-center"> {{ i+1 }}</td>
+                <td class="fixed-column text-center">{{ item.get('docCtlNo').value | isEmpty}}</td>
+                <td class="fixed-column text-center">{{ item.get('receiptNo').value | isEmpty }}</td>
+                <td><input numberOnly type="text" id="rubcheck{{i}}" class="text-right full-width"
+                    (change)="reEditRunCheck(i,$event.target.value)" formControlName="runCheck"
+                    value="{{ item.get('runCheck').value}}" maxlength="20" (blur)="onBlur()"></td>
+                <td class="fixed-column text-center">
+                  {{ item.get('receiptDate').value ? (item.get('receiptDate').value | dateString) : '-' }}</td>
+                <td class="fixed-column text-left">{{ item.get('taxName').value | isEmpty }}</td>
+                <td class="fixed-column text-center">{{ item.get('taxCode').value | isEmpty }}</td>
+                <td class="fixed-column text-right">{{ item.get('amount').value | decimalFormat:"###,###.00" }}</td>
+                <td><input type="text" class="text-left full-width" formControlName="remark" maxlength="500"
+                    (blur)="onBlur()"></td>
+              </tr>
+            </ng-container>
+
+            <ng-container *ngIf="formDataT1.controls.iaAuditIncD1List.controls==0">
+              <tr class="text-center">
+                <td colspan="14">ไม่พบข้อมูล</td>
+              </tr>
+            </ng-container>
+          </ng-container>
+
+        </tbody>
+      </table>
+    </div>
+
+    <div inline>
+      <div field [col]="4">
+        <label class="text-right full-width">ตรวจสอบกับทะเบียนควบคุมใบเสร็จรับเงิน :</label>
+      </div>
+      <div field [col]="2">
+        <div class="ui radio checkbox">
+          <input type="radio" formControlName="d1AuditFlag" id="d1AuditFlag" value="1" (blur)="onBlur()">
+          <label>ถูกต้อง</label>
+        </div>
+      </div>
+      <div field [col]="2">
+        <div class="ui radio checkbox">
+          <input type="radio" formControlName="d1AuditFlag" id="d1AuditFlag" value="2" (blur)="onBlur()">
+          <label>ไม่ถูกต้อง</label>
+        </div>
+      </div>
+    </div>
+    <div inline>
+      <div field [col]="3">
+        <label class="text-right full-width">ข้อตรวจพบ/ข้อสังเกต<br>(ข้อเท็จจริง/Condition) :</label>
+      </div>
+      <div field [col]="9">
+        <textarea rows="4" style="resize: none" formControlName="d1ConditionText" id="d1ConditionText" maxlength="200"
+          (blur)="onBlur()"></textarea>
+      </div>
+    </div>
+    <div inline>
+      <div field [col]="3">
+        <label class="text-right full-width">สิ่งที่ควรจะเป็น<br>(หลักเกณฑ์/Criteria) :</label>
+      </div>
+      <div field [col]="9">
+        <textarea rows="4" style="resize: none" formControlName="d1CriteriaText" id="d1CriteriaText" maxlength="200"
+          (blur)="onBlur()"></textarea>
+      </div>
+    </div>
+
+  </form>
+</segment>

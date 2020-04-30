@@ -1,0 +1,95 @@
+<br>
+<segment header="การใช้ใบเสร็จรับเงิน การงบหลังใบเส็จรับเงินรายวัน กับทะเบียนควบคุมรายรับ-จ่ายใบเสร็จรายรับ"
+  [loading]="loading">
+
+  <form form [formGroup]="formSearch">
+    <div inline>
+      <div field [col]="2">
+        <label class="text-right full-width">สำนักงานสรรพสามิตภาค :</label>
+      </div>
+      <div field [col]="4" [ngClass]="{'error': invalidSearchFormControl('sector')}">
+        <select class="ui dropdown full-width" id="sector" (change)="onChangeSector($event)" formControlName="sector">
+          <option value="">เลือกสำนักงานสรรพสามิตภาค</option>
+          <option *ngFor="let item of sectors" value="{{item.officeCode}}">{{item.deptShortName}}</option>
+        </select>
+      </div>
+      <div field [col]="2" >
+        <label class="text-right full-width">สำนักงานสรรพสามิตพื้นที่ :</label>
+      </div>
+      <div field [col]="3" [ngClass]="{'error': invalidSearchFormControl('area')}">
+        <select class="ui dropdown full-width" id="area" (change)="onChangeArea($event)" formControlName="area">
+          <option value="">เลือกสำนักงานสรรพสามิตพื้นที่</option>
+          <option value="0">ทั้งหมด</option>
+          <option *ngFor="let item of areas" value="{{item.officeCode}}">{{item.deptShortName}}</option>
+        </select>
+      </div>
+      <div field [col]="2">
+        <label class="text-right full-width">สำนักงานสรรพสามิตสาขา :</label>
+      </div>
+      <div field [col]="3" [ngClass]="{'error': invalidSearchFormControl('branch')}">
+        <select class="ui dropdown full-width" id="branch" formControlName="branch">
+          <option value="">เลือกสำนักงานสรรพสามิตสาขา</option>
+          <option value="0">ทั้งหมด</option>
+          <option *ngFor="let item of branch" value="{{item.officeCode}}">{{item.deptShortName}}</option>
+        </select>
+      </div>
+    </div>
+
+    <div inline>
+      <div field [col]="2">
+        <label class="text-right full-width">ช่วงในวันที่ :</label>
+      </div>
+      <div field [col]="4" [ngClass]="{'error': invalidSearchFormControl('receiptDateFrom') || invalidSearchFormControl('receiptDateTo')}">
+        <div class="ui calendar full-width" id="date1"  >
+          <div class="ui input left icon">
+            <i class="calendar alternate outline icon"></i>
+            <input type="text" autocomplete="off" placeholder="วว/ดด/ปปปป" id="inputDate1" readonly="">
+          </div>
+        </div>
+        ถึง&nbsp;&nbsp;&nbsp;
+        <div class="ui calendar full-width" id="date2" >
+          <div class="ui input left icon">
+            <i class="calendar alternate outline icon"></i>
+            <input type="text" autocomplete="off" placeholder="วว/ดด/ปปปป" id="inputDate2" readonly="">
+          </div>
+        </div>
+      </div>
+      <div field [col]="2">
+        <label class="text-right full-width">เลขที่กระดาษทำการ :</label>
+      </div>
+      <div field [col]="3" [ngClass]="{'error': flagAuditIncNo} ">
+        <select class="ui dropdown full-width" (change)="onChangeAuditIncNo($event)" formControlName="auditIncNo"
+          id="auditIncNo">
+          <option value="">เลือกเอกสาร</option>
+          <option *ngFor="let item of headerList let i =index" value="{{i}}">{{item.auditIncNo}}</option>
+        </select>
+      </div>
+    </div>
+    <br>
+    <div class="ui center aligned grid">
+      <div class="eight wide column">
+        <app-button-search (click)="serach()"></app-button-search>
+        <app-button-save (click)="save()"></app-button-save>
+        <app-button-export (click)="export()"></app-button-export>
+        <app-button-clear (click)="clear()"></app-button-clear>
+      </div>
+    </div>
+  </form>
+  <br>
+  <hr>
+  <div form>
+    <div inline>
+      <button class="ui large button btn-custom" [ngClass]="{'primary': urlActivate('/int06/01/01')}"
+        (click)="routeTo('/int06/01/01')">การใช้ใบเสร็จรับเงิน</button>
+      <button class="ui large button btn-custom" [ngClass]="{'primary': urlActivate('/int06/01/02')}"
+        (click)="routeTo('/int06/01/02')">สรุปรายวัน</button>
+      <button class="ui large button btn-custom" [ngClass]="{'primary': urlActivate('/int06/01/03')}"
+        (click)="routeTo('/int06/01/03' )">ตรวจสอบยอดเงินค่าภาษี</button>
+      <button class="ui large button btn-custom" [ngClass]="{'primary': urlActivate('/int06/01/04')}"
+        (click)="routeTo('/int06/01/04' )">ตรวจสอบกับแบบรายการภาษี</button>
+    </div>
+  </div>
+
+
+</segment>
+<router-outlet></router-outlet>

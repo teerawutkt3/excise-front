@@ -1,0 +1,89 @@
+<segment [loading]="loading">
+  <div form [formGroup]="formGroup">
+    <div inline>
+      <div field [col]="16">
+
+        <table class="ui celled table small">
+          <thead>
+            <tr style="text-align: center !important">
+              <th>ลำดับ</th>
+              <th>วันที่</th>
+              <th>จำนวนเงิน</th>
+              <th>จำนวนแบบพิมพ์/วัน</th>
+              <th>ผลการตรวจกับงบหลังสำเนาใบเสร็จ</th>
+              <th>หมายเหตุ</th>
+            </tr>
+          </thead>
+          <tbody formArrayName="iaAuditIncD2List">
+            <ng-container *ngIf="formGroup.controls">
+              <ng-container *ngIf="formGroup.controls.iaAuditIncD2List.controls!=0">
+
+                <tr [formGroupName]="i"
+                  *ngFor="let item of formGroup.controls.iaAuditIncD2List.controls; let i = index;">
+                  <td class="text-center">{{i+1}}</td>
+                  <td class="text-center"> {{ item.get('receiptDate').value ? (item.get('receiptDate').value | dateString) : '-' }}</td>
+                  <td class="text-right">{{ item.get('amount').value | decimalFormat:"###,###.00" }}</td>
+                  <td class="text-right">{{ item.get('printPerDay').value | decimalFormat:"###,###" }}</td>
+                  <td class="text-center">
+                    <div class="ui form">
+                      <div class="inline fields">
+                        <div class="field">
+                          <div class="ui radio checkbox">
+                            <input type="radio" formControlName="auditCheck" id="auditCheck" value="1"
+                              (change)="changeAudit()">
+                            <label>ถูกต้อง</label>
+                          </div>
+                        </div>
+                        <div class="field">
+                          <div class="ui radio checkbox">
+                            <input type="radio" formControlName="auditCheck" id="auditCheck" value="2"
+                              (change)="changeAudit()">
+                            <label>ไม่ถูกต้อง</label>
+                          </div>
+                        </div>
+                        <div class="field">
+                          <div class="ui radio checkbox">
+                            <input type="radio" formControlName="auditCheck" id="auditCheck" value="3"
+                              (change)="changeAudit()">
+                            <label>ไม่ได้งบหลังในเสร็จ</label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <input type="text" formControlName="remark" id="remark" (blur)="blurRemark(item.id)"
+                      class="ui large full-width">
+                  </td>
+                </tr>
+              </ng-container>
+              <ng-container *ngIf="formGroup.controls.iaAuditIncD2List.controls==0">
+                <tr class="text-center">
+                  <td colspan="6">ไม่พบข้อมูล</td>
+                </tr>
+              </ng-container>
+            </ng-container>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div inline>
+      <div field [col]="3">
+        <label class="text-right full-width">ข้อตรวจพบ/ข้อสังเกต<br>(ข้อเท็จจริง/Condition) :</label>
+      </div>
+      <div field [col]="9">
+        <textarea rows="4" style="resize: none" formControlName="d2ConditionText" id="d2ConditionText" maxlength="200"
+          (blur)=" onBlurTextArea()"></textarea>
+      </div>
+    </div>
+    <div inline>
+      <div field [col]="3">
+        <label class="text-right full-width">สิ่งที่ควรจะเป็น<br>(หลักเกณฑ์/Criteria) :</label>
+      </div>
+      <div field [col]="9">
+        <textarea rows="4" style="resize: none" formControlName="d2CriteriaText" id="d2CriteriaText" maxlength="200"
+          (blur)=" onBlurTextArea()"></textarea>
+      </div>
+    </div>
+  </div>
+</segment>

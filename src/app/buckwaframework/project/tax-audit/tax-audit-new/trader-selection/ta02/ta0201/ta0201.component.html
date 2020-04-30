@@ -1,0 +1,178 @@
+<with-breadcrumb [breadcrumb]="breadcrumb">
+  <segment header="{{b.b12.label}} {{yearPlan}}" [loading]="loading">
+    <form class="ui form" [formGroup]="formPlan">
+      <div class="inline fields">
+        <div class="three wide field"></div>
+        <div class="two wide field">
+          <label class="full-width text-center">เดือน</label>
+        </div>
+        <div class="two wide field">
+          <label class="full-width text-center">ปีปฏิทิน</label>
+        </div>
+        <div class="one wide field">
+          <label class="full-width text-center">จำนวน</label>
+        </div>
+      </div>
+      <div class="inline fields">
+        <div class="three wide field"></div>
+        <div class="two wide field">
+          <label>ตุลาคม </label>
+        </div>
+        <div class="two wide field">
+          <label>พ.ศ. {{yearPlan-1}}</label>
+        </div>
+        <div class="one wide field" [ngClass]="{ error: validateFormModal('month1') }">
+          <input type="number" formControlName="month1" class="full-width text-right">
+        </div>
+      </div>
+      <div class="inline fields">
+        <div class="three wide field"></div>
+        <div class="two wide field">
+          <label>พฤศจิกายน</label>
+        </div>
+        <div class="two wide field">
+          <label>พ.ศ. {{yearPlan-1}}</label>
+        </div>
+        <div class="one wide field" [ngClass]="{ error: validateFormModal('month2') }">
+          <input type="number" formControlName="month2" class="full-width text-right">
+        </div>
+      </div>
+      <div class="inline fields">
+        <div class="three wide field"></div>
+        <div class="two wide field">
+          <label>ธันวาคม</label>
+        </div>
+        <div class="two wide field">
+          <label>พ.ศ. {{yearPlan-1}}</label>
+        </div>
+        <div class="one wide field" [ngClass]="{ error: validateFormModal('month3') }">
+          <input type="number" formControlName="month3" class="full-width text-right">
+        </div>
+      </div>
+      <div class="inline fields">
+        <div class="three wide field"></div>
+        <div class="two wide field">
+          <label>มกราคม</label>
+        </div>
+        <div class="two wide field">
+          <label>พ.ศ. {{yearPlan}}</label>
+        </div>
+        <div class="one wide field" [ngClass]="{ error: validateFormModal('month4') }">
+          <input type="number" formControlName="month4" class="full-width text-right">
+        </div>
+      </div>
+      <div class="inline fields">
+        <div class="three wide field"></div>
+        <div class="two wide field">
+          <label>กุมภาพันธ์</label>
+        </div>
+        <div class="two wide field">
+          <label>พ.ศ. {{yearPlan}}</label>
+        </div>
+        <div class="one wide field" [ngClass]="{ error: validateFormModal('month5') }">
+          <input type="number" formControlName="month5" class="full-width text-right">
+        </div>
+      </div>
+      <div class="inline fields">
+        <div class="three wide field"></div>
+        <div class="two wide field">
+          <label>มีนาคม</label>
+        </div>
+        <div class="two wide field">
+          <label>พ.ศ. {{yearPlan}}</label>
+        </div>
+        <div class="one wide field" [ngClass]="{ error: validateFormModal('month6') }">
+          <input type="number" formControlName="month6" class="full-width text-right">
+        </div>
+      </div>
+      <div class="inline fields">
+        <div class="three wide field"></div>
+        <div class="two wide field">
+          <label>เมษายน</label>
+        </div>
+        <div class="two wide field">
+          <label>พ.ศ. {{yearPlan}}</label>
+        </div>
+        <div class="one wide field" [ngClass]="{ error: validateFormModal('month7') }">
+          <input type="number" formControlName="month7" class="full-width text-right">
+        </div>
+      </div>
+      <div class="inline fields">
+        <div class="three wide field"></div>
+        <div class="two wide field">
+          <label>พฤษภาคม</label>
+        </div>
+        <div class="two wide field">
+          <label>พ.ศ. {{yearPlan}}</label>
+        </div>
+        <div class="one wide field" [ngClass]="{ error: validateFormModal('month8') }">
+          <input type="number" formControlName="month8" class="full-width text-right">
+        </div>
+      </div>
+      <div class="inline fields">
+        <div class="three wide field"></div>
+        <div class="two wide field">
+          <label>มิถุนายน</label>
+        </div>
+        <div class="two wide field">
+          <label>พ.ศ. {{yearPlan}}</label>
+        </div>
+        <div class="one wide field" [ngClass]="{ error: validateFormModal('month9') }">
+          <input type="number" formControlName="month9" class="full-width text-right">
+        </div>
+      </div>
+      <div class="inline fields">
+        <div class="three wide field"></div>
+        <div class="two wide field">
+          <label>กรกฎาคม</label>
+        </div>
+        <div class="two wide field">
+          <label>พ.ศ. {{yearPlan}}</label>
+        </div>
+        <div class="one wide field" [ngClass]="{ error: validateFormModal('month10') }">
+          <input type="number" formControlName="month10" class="full-width text-right">
+        </div>
+      </div>
+      <div class="inline fields">
+        <div class="three wide field"></div>
+        <div class="two wide field">
+          <label>สิงหาคม</label>
+        </div>
+        <div class="two wide field">
+          <label>พ.ศ. {{yearPlan}}</label>
+        </div>
+        <div class="one wide field" [ngClass]="{ error: validateFormModal('month11') }">
+          <input type="number" formControlName="month11" class="full-width text-right">
+        </div>
+      </div>
+      <div class="inline fields">
+        <div class="three wide field"></div>
+        <div class="two wide field">
+          <label>กันยายน</label>
+        </div>
+        <div class="two wide field">
+          <label>พ.ศ. {{yearPlan}}</label>
+        </div>
+        <div class="one wide field" [ngClass]="{ error: validateFormModal('month12') }">
+          <input type="number" formControlName="month12" class="full-width text-right">
+        </div>
+      </div>
+      <div class="inline fields">
+        <div class="three wide field"></div>
+        <div class="two wide field"></div>
+        <div class="two wide field">
+          <label class="full-width text-right">รวม</label>
+        </div>
+        <div class="one wide field">
+          <input type="text" class="custom-readonly full-width text-right" readonly="" formControlName="numTotal">
+        </div>
+      </div>
+      <br>
+      <br>
+      <div class="text-center">
+        <app-button-save (click)="onSubmit()"></app-button-save>
+        <app-button-back [routerLink]="['/tax-audit-new/ta02/05']"></app-button-back>
+      </div>
+    </form>
+  </segment>
+</with-breadcrumb>

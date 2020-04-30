@@ -1,0 +1,196 @@
+<app-breadcrumb [route]="breadcrumb"></app-breadcrumb>
+
+<div class="ui grid">
+  <div class="sixteen wide column">
+    <segment header="ตรวจสอบงบสรุปยอดเงินค่าภาษีกับงบทดลอง" [loading]="false">
+      <div class="ui form">
+        <form id="upload-form" ngNativeValidate>
+          <div class="inline fields">
+            <div class="three wide field "></div>
+            <div class="two wide field ">
+              <label class="text-right full-width">ไฟล์งบทดลอง</label>
+            </div>
+            <div class="five wide field ">
+              <input class="inputfile" type="file" name="fileExel" id="fileExel" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                required>
+            </div>
+          </div>
+
+          <div class="inline fields">
+            <div class="two wide field "></div>
+            <div class="three wide field ">
+              <label class="text-right full-width " style="font-size:20px; font-weight: bold">ข้อมูลนำมาเปรียบเทียบ</label>
+            </div>
+          </div>
+
+          <div class="inline fields">
+            <div class="three wide field "></div>
+            <div class="two wide field ">
+              <label class="text-right full-width">สำนักงานสรรพสามิตภาค</label>
+            </div>
+            <div class="three wide field ">
+              <select name="sector " id="sector" class="ui dropdown ai search full-width office" (change)="travelTo2Dropdown($event)">
+                <option value="">กรุณาเลือก</option>
+                <option *ngFor="let data of travelTo1List" value="{{data.lovId}}">{{data.subTypeDescription}}</option>
+              </select>
+            </div>
+            <div class="two wide field ">
+              <label class="text-right full-width">สำนักงานสรรพสามิตพื้นที่</label>
+            </div>
+            <div class="three wide field ">
+              <select name="area" id="area" class="ui dropdown ai search full-width office">
+                <option value="">กรุณาเลือก</option>
+                <option *ngFor="let data of travelTo2List" value="{{data.lovId}}">{{data.subTypeDescription}}</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="inline fields">
+            <div class="three wide field "></div>
+            <div class="two wide field">
+              <label class="text-right full-width">วันที่จัดเก็บรายได้ ตั้งแต่</label>
+            </div>
+            <div class="three wide field ">
+              <div class="ui icon input">
+                <input type="text" placeholder="วว/ดด/ปปปป" value="">
+                <i class="add to calendar icon"></i>
+              </div>
+            </div>
+            <div class="two wide field ">
+              <label class="text-center full-width">ถึง</label>
+            </div>
+            <div class="three wide field ">
+              <div class="ui icon input">
+                <input type="text" placeholder="วว/ดด/ปปปป" value="">
+                <i class="add to calendar icon"></i>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <br>
+      <div class="ui center aligned grid">
+        <div class="six wide column">
+          <!-- <app-button-back routerLink="/int01/4/1"></app-button-back> -->
+          <app-button-custom  icon="clipboard check" color="green">เปรียบเทียบ</app-button-custom>
+        </div>
+      </div>
+
+      <br>
+
+      <table class="ui small celled table striped selectable">
+        <thead>
+          <tr style="text-align: center">
+            <th colspan="6">งบทดลอง</th>
+            <th colspan="4">งบสรุปยอดเงินภาษี</th>
+            <th rowspan="2">ผลต่าง</th>
+          </tr>
+          <tr style="text-align: center;">
+            <th rowspan="2" colspan="2">บัญชีแยกประเภท</th>
+            <th rowspan="2">ยอดยกมา</th>
+            <th rowspan="2">เดบิต</th>
+            <th rowspan="2">เครดิต</th>
+            <th rowspan="2">ยอดยกไป</th>
+
+            <th colspan="3">หมวดภาษี</th>
+            <th colspan="1">ยอดภาษี</th>
+          </tr>
+          <!-- <tr style="text-align: center"> -->
+          <!-- <th>รหัสภาษี</th>
+                  <th>รายการ</th>
+                  <th>สาขา</th> -->
+          <!-- <th>รวม</th> -->
+          <!-- </tr> -->
+
+        </thead>
+        <tbody>
+
+          <tr *ngFor="let item of compareList">
+            <td> {{item.trialBalance.accountNo}}</td>
+            <td> {{item.trialBalance.accountDes}} </td>
+            <td> {{item.trialBalance.bringForwardAmount}} </td>
+            <td> {{item.trialBalance.debit}} </td>
+            <td> {{item.trialBalance.credit}} </td>
+            <td> {{item.trialBalance.carryForwardAmount}} </td>
+            <td colspan="3">
+
+              <table class="ui small celled table striped selectable" *ngIf="item.typeTaxVoList.length > 0">
+                <thead>
+                  <tr>
+                    <th>รหัสภาษี</th>
+                    <th>รายการ</th>
+                    <th>สาขา</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let txlist of item.typeTaxVoList">
+                    <td style="width: 75px;"> {{txlist.incomeCode}} </td>
+                    <td style="width: 170px;"> {{txlist.incomeName}} </td>
+                    <td>
+                      <!-- <div *ngFor="let office of txlist.officeList"> -->
+                      <table style="width: 100%">
+                        <tr *ngFor="let office of txlist.officeList">
+                          <td style="width: 70%;"> {{office.officeName}} </td>
+                          <td style="text-align: right;"> {{office.total}} </td>
+                        </tr>
+                      </table>
+                      <!-- <span> {{office.officeName}} </span> : {{office.total}} -->
+                      <!-- </div> -->
+                    </td>
+
+                  </tr>
+                </tbody>
+
+              </table>
+
+            </td>
+            <!-- <td>8</td>
+                      <td>9</td> -->
+            <td style="text-align: right"> {{item.totalCal}} </td>
+            <td style="text-align: right"> {{item.diff}} </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <br>
+
+      <div class="sixteen wide column">
+        <div class="ui centered grid">
+          <div class="ui form fourteen wide column">
+            <!-- row1 -->
+            <div class="inline fields">
+              <div class="four wide field">
+                <label class="text-right full-width">ข้อตรวจพบ/ข้อสังเกต <br> (ข้อเท็จจริง/Condition) :</label>
+              </div>
+              <div class="ten  wide field">
+                <textarea rows="3" style="width: 100%;"></textarea>
+              </div>
+            </div>
+            <!-- row2 -->
+            <div class="inline fields">
+              <div class="four wide field">
+                <label class="text-right full-width">สิ่งที่ควรจะเป็น <br> (หลักเกณฑ์/Criteria)
+                  :</label>
+              </div>
+              <div class="ten  wide field">
+                <textarea rows="3" style="width: 100%;"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ui center aligned grid">
+        <div class="six wide column">
+          <!-- <button class="ui mini button" routerLink="/int01/4/2">
+                  <i class="arrow circle left icon"></i>
+                  ย้อนกลับ
+                </button> -->
+          <app-button-save></app-button-save>
+          <app-button-export routerLink="/int06/10/01"></app-button-export>
+          <app-button-custom color="primary" text="ตั้งค่าจับคู่รหัสภาษี" routerLink="/int06/10/01"></app-button-custom>
+        </div>
+      </div>
+    </segment>
+  </div>
+</div>

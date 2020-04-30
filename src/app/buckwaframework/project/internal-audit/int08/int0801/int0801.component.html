@@ -1,0 +1,89 @@
+<with-breadcrumb [breadcrumb]="breadcrumb">
+
+    <segment header="อัพโหลดไฟล์ตรวจสอบข้อมูลบัญชี" [loading]="false">
+        <form id="upload-form" (submit)="uplodFile($event)" ngNativeValidate>
+            <div class="ui form">
+                <div class="inline fields ui centered grid">
+                    <div class="one wide field"></div>
+                    <div class="three wide field required">
+                        <label class="text-right full-width">รายงานงบทดลอง</label>
+                    </div>
+                    <div class="five wide field">
+                        <input id="fileExcel" type="file" name="fileExcel" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel"
+                            (change)="changeUpload($event)" required>
+                    </div>
+                    <div class="three wide field"></div>
+                </div>
+            </div>
+            <br>
+            <div class="ui center aligned grid">
+                <div class="eight wide column">
+                    <button class="ui mini yellow button" type="submit">
+                        <i class="upload icon"></i>
+                        อัพโหลด
+                    </button>
+                    <button class="ui mini button" type="reset" (click)="reset()">
+                        <i class="sync alternate icon"></i>
+                        ล้างข้อมูล
+                    </button>
+                </div>
+            </div>
+        </form>
+        <br>
+        <table class="ui small celled table striped selectable" id="dataTableExcel" width="100%">
+            <thead>
+                <tr>
+                    <th style="text-align: center;">เลขที่บัญชีแยกประเภท</th>
+                    <th style="text-align: center;">ชื่อบัญชีแยกประเภท</th>
+                    <th style="text-align: center;">ยอดยกมา</th>
+                    <th style="text-align: center;">เดบิต</th>
+                    <th style="text-align: center;">เครดิต</th>
+                    <th style="text-align: center;">ยอดยกไป</th>
+                </tr>
+            </thead>
+            <tfoot *ngIf="footer.debit && footer.credit">
+                <tr>
+                    <th class="ui disabled"></th>
+                    <th>ผลรวม</th>
+                    <th style="text-align: right;">0.00</th>
+                    <th style="text-align: right;">{{this.DF(footer.debit)}}</th>
+                    <th style="text-align: right;">{{this.DF(footer.credit)}}</th>
+                    <th style="text-align: right;">0.00</th>
+                </tr>
+            </tfoot>
+        </table>
+
+        <div class="sixteen wide column">
+            <div class="ui centered grid">
+                <div class="ui form fourteen wide column">
+                    <!-- row1 -->
+                    <div class="inline fields">
+                        <div class="four wide field">
+                            <label class="text-right full-width">ข้อตรวจพบ/ข้อสังเกต <br> (ข้อเท็จจริง/Condition) :</label>
+                        </div>
+                        <div class="ten  wide field">
+                            <textarea rows="3" style="width: 100%;"></textarea>
+                        </div>
+                    </div>
+                    <!-- row2 -->
+                    <div class="inline fields">
+                        <div class="four wide field">
+                            <label class="text-right full-width">สิ่งที่ควรจะเป็น <br> (หลักเกณฑ์/Criteria)
+                                :</label>
+                        </div>
+                        <div class="ten  wide field">
+                            <textarea rows="3" style="width: 100%;"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ui center aligned grid">
+            <div class="eight wide column">
+                <app-button-save></app-button-save>
+                <app-button-export (click)="onExport()"></app-button-export>
+            </div>
+        </div>
+    </segment>
+</with-breadcrumb>

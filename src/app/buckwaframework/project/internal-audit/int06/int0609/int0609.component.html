@@ -1,0 +1,121 @@
+<app-breadcrumb [route]="breadcrumb"></app-breadcrumb>
+<segment header="ตรวจสอบการนำฝาก/ส่งเงินรายได้" [loading]="false">
+  <div class="ui grid">
+    <div class="sixteen wide column">
+      <div class="ui bottom attached ">
+        <div class="ui form">
+          <div class="inline fields">
+            <div class="three wide field">
+              <label class="text-right full-width">สำนักงานสรรพสามิตภาค</label>
+            </div>
+            <div class="five wide field">
+              <select class="ui dropdown search selection" style="width: 100%;" id="travelTo1" (change)="travelTo2Dropdown($event)"
+                >
+                <option value="00">กรุณาเลือก</option>
+                <option *ngFor="let data of travelTo1List" value="{{data.lovId}}">{{data.subTypeDescription}}</option>
+              </select>
+            </div>
+            <div class="two wide field">
+              <label class="text-right full-width">สำนักงานสรรพสามิตพื้นที่</label>
+            </div>
+            <div class="five wide field">
+              <select class="ui dropdown search selection" style="width: 100%;" id="travelTo2" (change)="travelTo3Dropdown($event)"
+                >
+                <option value="00">กรุณาเลือก</option>
+                <option *ngFor="let data of travelTo2List" value="{{data.lovId}}">{{data.subTypeDescription}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="inline fields">
+            <div class="three wide field">
+              <label class="text-right full-width">สำนักงานสรรพสามิตพื้นที่สาขา</label>
+            </div>
+            <div class="five wide field">
+              <select class="ui dropdown search selection" style="width: 100%;" id="travelTo3">
+                <option value="00">กรุณาเลือก</option>
+                <option *ngFor="let data of travelTo3List" value="{{data.lovId}}">{{data.subTypeDescription}}</option>
+              </select>
+            </div>
+            <div class="two wide field ">
+              <label class="text-right full-width">วันที่
+              </label>
+            </div>
+            <div class="two wide field">
+              <div class="ui calendar" id="calendar1" style="width:100%">
+                <div class="ui input left icon">
+                  <i class="calendar alter nate outline icon"></i>
+                  <input type="text" placeholder="วว/ดด/ปปปป" name="endDate" id="endDate" readonly>
+                </div>
+              </div>
+            </div>
+            <div class="one wide field">
+              <label class="text-center full-width">ถึง</label>
+            </div>
+            <div class="two wide field">
+              <div class="ui calendar" id="calendar2" style="width:100%">
+                <div class="ui input left icon">
+                  <i class="calendar alter nate outline icon"></i>
+                  <input type="text" placeholder="วว/ดด/ปปปป" name="endDate" id="endDate" readonly>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="ui center aligned grid">
+            <div class="eight wide column">
+              <app-button-search></app-button-search>
+              <app-button-clear></app-button-clear>
+            </div>
+          </div>
+        </div>
+        <br />
+        <br />
+        <div id="Int0181">
+          <table id="dataTable" class="ui  small celled table striped selectable" width="100%">
+            <thead>
+              <tr style="text-align: center">
+                <th>ลำดับที่</th>
+                <th>วัน/เดือน/ปี ที่จัดเก็บรายได้</th>
+                <th>จำนวนเงินที่จัดเก็บ</th>
+                <th>วัน/เดือน/ปี ที่นำเงินฝากบัญชีพัก</th>
+                <th>วัน/เดือนปี ที่นำเงินฝากคลัง</th>
+                <th>จำนวนเงินที่ฝากคลัง</th>
+              </tr>
+            </thead>
+          </table>
+          <br>
+          <div class="sixteen wide column">
+            <div class="ui centered grid">
+              <div class="ui form fourteen wide column">
+                <div class="inline fields">
+                  <div class="four wide field">
+                    <label class="text-right full-width">ข้อตรวจพบ/ข้อสังเกต <br> (ข้อเท็จจริง/Condition) :</label>
+                  </div>
+                  <div class="ten  wide field">
+                    <textarea rows="3" style="width: 100%;"></textarea>
+                  </div>
+                </div>
+                <div class="inline fields">
+                  <div class="four wide field">
+                    <label class="text-right full-width">สิ่งที่ควรจะเป็น <br> (หลักเกณฑ์/Criteria)
+                      :</label>
+                  </div>
+                  <div class="ten  wide field">
+                    <textarea rows="3" style="width: 100%;"></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="ui center aligned grid">
+            <div class="eight wide center aligned column">
+              <app-button-save></app-button-save>
+              <app-button-export></app-button-export>
+              <app-button-cancel></app-button-cancel>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</segment>

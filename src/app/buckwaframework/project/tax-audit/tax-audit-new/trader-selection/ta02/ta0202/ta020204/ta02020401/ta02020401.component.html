@@ -1,0 +1,70 @@
+<br>
+
+  <div class="ui form grid">
+    <div class="two wide column"></div>
+    <div class="fourteen wide column">
+
+      <div class="inline fields">
+        <div class="two wide field"> </div>
+        <div class="one wide field"> <i class="small circular inverted green check icon" style="font-size: 1em;"></i>
+        </div>
+        <div class="three wide field">
+          <label class="text-left full-width">วิเคราะห์ข้อมูลเบื้องต้น</label>
+        </div>
+      </div>
+
+      <div class="inline fields">
+        <div class="two wide field"></div>
+        <div class="one wide field"> <i class="small circular inverted green check icon" style="font-size: 1em;"></i>
+        </div>
+        <div class="five wide field">
+          <label class="text-left full-width">บันทึกผลการวิเคราะห์การชำระภาษีสรรพสามิต (ตส. ๐๑-๐๑)</label>
+        </div>
+        <div class="three wide field">
+          <app-button-save (click)="gotoTS01()"></app-button-save>
+          <app-button-custom color="primary" icon="eye icon" text="ดูแบบ"></app-button-custom>
+        </div>
+      </div>
+
+      <div class="inline fields">
+        <div class="two wide field"></div>
+        <div class="one wide field"> <i class="small circular inverted orange edit alternate icon"
+            style="font-size: 1em;"></i>
+        </div>
+        <div class="five wide field">
+          <label class="text-left full-width">ขออนุมัติออกหนังสือเรียก (ตส. ๐๑-๐๒)</label>
+        </div>
+        <div class="three wide field">
+          <app-button-save  (click)="gotoTS02()"></app-button-save>
+          <app-button-custom color="primary" icon="eye icon" text="ดูแบบ" (click)="goTo('/tax-audit-new/ta03/01')"></app-button-custom>
+        </div>
+      </div>
+
+      <div class="inline fields">
+        <div class="two wide field"> </div>
+        <div class="one wide field"> <i class="small circular inverted yellow sticky note icon"
+          style="font-size: 1em;"></i>
+        </div>
+        <div class="three wide field">
+          <label class="text-left full-width">การจัดทำหนังสือเรียก</label>
+        </div>
+      </div>
+
+      <div class="inline fields">
+        <div class="two wide field"></div>
+        <div class="one wide field"> <i class="small circular inverted yellow sticky note icon"
+            style="font-size: 1em;"></i>
+        </div>
+        <div class="five wide field">
+          <label class="text-left full-width">หนังสือเรียกตามพระราชบัญญัติภาษีสรรพสามิต พ.ศ. ๒๕๖๐ (ตส. ๐๑-๐๓)</label>
+        </div>
+        <div class="three wide field">
+          <app-button-save  (click)="gotoTS03()"></app-button-save>
+          <app-button-custom color="primary" icon="eye icon" text="ดูแบบ" (click)="goTo('/tax-audit-new/ta03/01')"></app-button-custom>
+        </div>
+      </div>
+
+      <br>
+
+    </div>
+  </div>

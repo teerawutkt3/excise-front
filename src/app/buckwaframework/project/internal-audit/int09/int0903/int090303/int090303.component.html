@@ -1,0 +1,132 @@
+<app-breadcrumb [route]="breadcrumb"></app-breadcrumb>
+<div class="ui grid">
+  <div class="sixteen wide column">
+    <segment header="ทะเบียนคุมเช็ค" [loading]="false">
+      <form class="ui form" [formGroup]="dataFillter" (ngSubmit)="onSubmit($event)">
+        <input type="hidden" id="searchFlag" name="searchFlag">
+        <!-- row 1 -->
+        <div class="inline fields  ui grid" *ngIf="datas">
+          <div class="three wide field ">
+            <label class="text-right full-width">สำนักงานสรรพสามิตภาค</label>
+          </div>
+          <div class="four wide field ">
+            {{datas.sector}}
+          </div>
+          <div class="three wide field ">
+            <label class="text-right full-width">สำนักงานสรรพสามิตพื้นที่</label>
+          </div>
+          <div class="four wide field ">
+            {{datas.area}}
+          </div>
+        </div>
+        <!-- row 2 -->
+        <div class="inline fields  ui grid">
+          <div class="three wide field ">
+            <label class="text-right full-width">สำนักงานสรรพสามิตพื้นที่สาขา</label>
+          </div>
+          <div class="four wide field ">
+            -
+          </div>
+          <div class="three wide field ">
+            <label class="text-right full-width">ประเภทงบประมาณ</label>
+          </div>
+          <div class="four wide field ">
+            <select name="budgetType" id="budgetType" class="ui dropdown ai search full-width office">
+              <option value="">กรุณาเลือก</option>
+              <option *ngFor="let item of budgetTypeList" value="{{item.budgetType}}">{{item.budgetType}}</option>
+            </select>
+          </div>
+        </div>
+        <!-- row 3 -->
+        <div class="inline fields  ui grid">
+          <div class="three wide field ">
+            <label class="text-right full-width">วันที่เริ่มต้น</label>
+          </div>
+          <div class="four wide field ">
+            <div class="ui input">
+              <div class="ui calendar full-width" id="dateF">
+                <div class="ui input left icon">
+                  <i class="calendar alter nate outline icon"></i>
+                  <input name="dateForm" type="text" id="dateForm" autocomplete="off" [attr.readonly]="null"
+                    placeholder="วว/ดด/ปปปป" [attr.required]="true" formControlName="startDate">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="three wide field ">
+            <label class="text-right full-width">วันที่สิ้นสุด</label>
+          </div>
+          <div class="four wide field ">
+            <div class="ui input">
+              <div class="ui calendar full-width" id="dateT">
+                <div class="ui input left icon">
+                  <i class="calendar alter nate outline icon"></i>
+                  <input name="dateTo" type="text" id="dateTo" autocomplete="off" [attr.readonly]="null"
+                    placeholder="วว/ดด/ปปปป" [attr.required]="true" formControlName="endDate">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="one wide field "></div>
+        </div><br>
+        <div class="ui stackable center aligned page grid">
+          <button class="ui mini primary button" type="submit"><i class="search icon"></i>ค้นหา</button>
+          <button class="ui mini gray button " type="button" (click)="clear()"><i
+              class="refresh icon"></i>ล้างข้อมูล</button>
+        </div><br>
+      </form>
+      <br>
+      <table id="dataTable" class="ui small celled table striped selectable display nowrap" style="width: 100%;">
+        <thead>
+          <tr>
+            <th style="text-align: center !important">ลำดับที่</th>
+            <th style="text-align: center !important">วันที่สั่งจ่าย</th>
+            <th style="text-align: center !important">เช็คเล่มที่</th>
+            <th style="text-align: center !important">ชื่อธนาคาร</th>
+            <th style="text-align: center !important">จำนวนเงินสั่งจ่ายในเช็ค</th>
+            <th style="text-align: center !important">ประเภทงบประมาณ</th>
+            <th style="text-align: center !important">รายการ</th>
+            <th style="text-align: center !important">ผู้รับเงิน</th>
+          </tr>
+        </thead>
+      </table>
+      <br>
+      <div class="ui centered grid">
+        <div class="ui form fourteen wide column">
+          <!-- row1 -->
+          <div class="inline fields">
+            <div class="four wide field">
+              <label class="text-right full-width">ข้อตรวจพบ/ข้อสังเกต <br>
+                (ข้อเท็จจริง/Condition) :</label>
+            </div>
+            <div class="ten  wide field">
+              <textarea rows="3" style="width: 100%;"></textarea>
+            </div>
+          </div>
+          <!-- row2 -->
+          <div class="inline fields">
+            <div class="four wide field">
+              <label class="text-right full-width">สิ่งที่ควรจะเป็น <br> (หลักเกณฑ์/Criteria)
+                :</label>
+            </div>
+            <div class="ten  wide field">
+              <textarea rows="3" style="width: 100%;"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ui grid">
+        <div class="sixteen wide center aligned column">
+          <app-button-save></app-button-save>
+          <button class="ui mini yellow button">
+            <i class="print icon"></i>ส่งออก
+          </button>
+        </div>
+      </div>
+    </segment>
+  </div>
+</div>
+<!-- form-data-excel -->
+<form id="form-data-excel" method="POST">
+  <input type="hidden" name="dataJson" id="dataJson">
+</form>

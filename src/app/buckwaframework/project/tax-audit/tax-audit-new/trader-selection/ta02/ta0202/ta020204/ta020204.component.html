@@ -1,0 +1,58 @@
+<segment header="หนังสือเรียก" [loading]="false">
+    <div class="ui form grid">
+      <div class="sixteen wide column">
+  
+        <div class="inline fields">
+          <div class="two wide field"></div>
+          <div class="two wide field">
+            <h4>ขั้นตอน</h4>
+          </div>
+          <div class="twelve wide field">
+            <div class="ui steps">
+              <div class="link step" [ngClass]="{'active': colorStep[0]}" (click)="goTo('/tax-audit-new/ta02/02/01/04/01',0)" >
+                <div class="content">
+                  <div class="title st">ก่อนการออกตรวจ</div>
+                </div>
+              </div>
+              <div class="link step" [ngClass]="{'active': colorStep[1]}"  (click)="goTo('/tax-audit-new/ta02/02/01/04/02',1)" >
+                   <div class="content">
+                  <div class="title st">การออกตรวจ</div>
+                </div>
+              </div>
+              <div class="link step" [ngClass]="{'active': colorStep[2]}" (click)="goTo('/tax-audit-new/ta02/02/01/04/03',2)" >
+                <div class="content">
+                  <div class="title st">
+                    หลังการออกตรวจ
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <router-outlet></router-outlet>
+        <hr>
+        <div class="inline fields">
+          <div class="two wide field"></div>
+          <div class="two wide field">
+            <h4>สถานะ</h4>
+          </div>
+          <div class="twelve wide field">
+            <div class="four wide field">
+              <i class="small circular inverted yellow sticky note icon" style="font-size: 1em;"></i>
+              <label>รอดำเนินการ</label>
+            </div>
+            <div class="four wide field">
+              <i class="small circular inverted orange edit alternate icon" style="font-size: 1em;"></i>
+              <label>กำลังดำเนินการ</label>
+            </div>
+            <div class="four wide field">
+              <i class="small circular inverted green check icon" style="font-size: 1em;"></i>
+              <label>
+                
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </segment>

@@ -1,0 +1,196 @@
+<app-breadcrumb style="width: 100%;" [route]="breadcrumb"></app-breadcrumb>
+<segment header="สรุปผลการตรวจสอบ" [loading]="false">
+  <div class="ui grid">
+    <div class="row">
+      <div class="two wide column"></div>
+      <div class="twelve wide column">
+        <div class="ui one column centered grid">
+          <div class="column" style="text-align: center">
+            <label>กระดาษทำการ</label>
+            <label><br>สรุปผลการสอบทานการประเมินการจัดวางระบบและการควบคุมภายในประจำปีงบประมาณ 2561</label>
+            <label><br>หน่วยงานรับตรวจ สำนักงานสรรพสามิตภาคที่ 1 วันที่ตรวจ 13 - 17 พฤศจิกายน 2560</label>
+            <label><br>ผลการสอบทานจากการปฏิบัติงาน</label>
+          </div>
+        </div>
+      </div>
+      <div class="two wide column">
+        <div class="column text-right full-width">
+          <app-button-custom color="primary" text="ผลการสอบทาน"></app-button-custom>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <br>
+  <table class="ui small celled table striped selectable" style="width: 100%;">
+    <thead>
+      <tr class="text-center">
+        <th>แบบรายการ/แนวทางการประเมิน</th>
+        <th>ผลการสอบทาน</th>
+        <th>ข้อเสนอแนะ</th>
+        <th>ผลการสอบทาน/ข้อเสนอแนะ</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1. แบบประเมินองค์ประกอบการควบคุมภายใน (แบบ ปย.1) 5 ด้าน (ความเห็น/คำอธิบาย)<br> (ด้านสภาพแวดล้อมการควบคุม
+          ด้านการประเมินความเสี่ยง ด้านกิจกรรมการควบคุม <br>ด้านสารสนเทศและการสื่อสาร ด้านการติดตามและประเมินผล)</td>
+        <td></td>
+        <td></td>
+        <td>
+          <div class="ui form">
+            <div class="grouped fields">
+              <div class="field">
+                <div class="ui radio checkbox">
+                  <input type="radio" name="example1">
+                  <label>เพียงพอ เหมาะสม</label>
+                </div>
+              </div>
+              <div class="field">
+                <div class="ui radio checkbox">
+                  <input type="radio" name="example1">
+                  <label>ไม่เพียงพอ</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>2. รายงานผลการประเมินองค์ประกอบของการควบคุมภายใน (ปย.1) (ผลการประเมิน/ข้อสรุป)
+          <br>(สรุปจากแบบประเมินองค์ประกอบการควบคุมภายในทั้ง 5 ด้าน ในข้อ 1)</td>
+        <td></td>
+        <td></td>
+        <td>
+          <div class="ui form">
+            <div class="grouped fields">
+              <div class="field">
+                <div class="ui radio checkbox">
+                  <input type="radio" name="example2">
+                  <label>เพียงพอ เหมาะสม</label>
+                </div>
+              </div>
+              <div class="field">
+                <div class="ui radio checkbox">
+                  <input type="radio" name="example2">
+                  <label>ไม่เพียงพอ</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>3. แบบสอบถามการควบคุมภายใน (ประเมินความมีอยู่จริงของกิจกรรมในข้อคำถาม <br>ตามคำตอบมี/ไม่มี
+          และปฏิบัติจริงตามคำอธิบาย)</td>
+        <td></td>
+        <td></td>
+        <td>
+          <div class="ui form">
+            <div class="grouped fields">
+              <div class="field">
+                <div class="ui radio checkbox">
+                  <input type="radio" name="example3">
+                  <label>เพียงพอ เหมาะสม</label>
+                </div>
+              </div>
+              <div class="field">
+                <div class="ui radio checkbox">
+                  <input type="radio" name="example3">
+                  <label>ไม่เพียงพอ</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>4. รายงานการประเมินผลและการปรับปรุงการควบคุมภายในของหน่วยงานย่อย (แบบ ปย.2)
+          <br>(ประเมินจากกิจกรรมการปฏิบัติงานให้ครอบคลุมตามภารกิจงาน
+          <br>รวมถึงประเมินกิจกรรมการควบคุมที่มีอยู่ว่าปฏิบัติจริงและบรรลุวัตถุประสงค์หรือไม่ <br>โดยนำข้อมูลจากข้อ 1
+          ข้อ 2 มาวิเคราะห์ในกิจกรรมด้วย)
+          <br> ถ้ายังทำให้งานไม่บรรลุวัตถุประสงค์หรือยังเกิดความเสี่ยง
+          <br>จะต้องรายงานความเสี่ยงที่ยังมีอยู่ให้กรมสรรพสามิตทราบ <br>และหาวิธีการปรับปรุงการควบคุม</td>
+        <td></td>
+        <td></td>
+        <td>
+          <div class="ui form">
+            <div class="grouped fields">
+              <div class="field">
+                <div class="ui radio checkbox">
+                  <input type="radio" name="example4">
+                  <label>เพียงพอ เหมาะสม</label>
+                </div>
+              </div>
+              <div class="field">
+                <div class="ui radio checkbox">
+                  <input type="radio" name="example4">
+                  <label>ไม่เพียงพอ</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>5. มีการแต่งตั้งคณะทำงานควบคุมภายในประกอบด้วยผู้แทนจากทุกส่วนงาน <br>โดยสรรพสามิตพื้นที่เป็นประธานคณะทำงานฯ
+          และคณะกรรมการฯ <br>ร่วมกันประเมินการควบคุมภายใน</td>
+        <td></td>
+        <td></td>
+        <td>
+          <div class="ui form">
+            <div class="grouped fields">
+              <div class="field">
+                <div class="ui radio checkbox">
+                  <input type="radio" name="example5">
+                  <label>เพียงพอ เหมาะสม</label>
+                </div>
+              </div>
+              <div class="field">
+                <div class="ui radio checkbox">
+                  <input type="radio" name="example5">
+                  <label>ไม่เพียงพอ</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <br>
+  <div class="ui form">
+    <div class="inline fields">
+      <div class="three wide field"><input type="text" placeholder="ชื่อ - นามสกุล"></div>
+      <div class="two wide field"></div>
+      <div class="three wide field"><input type="text" placeholder="ชื่อ - นามสกุล"></div>
+      <div class="two wide field"></div>
+      <div class="three wide field"><input type="text" placeholder="ชื่อ - นามสกุล"></div>
+    </div>
+    <div class="inline fields">
+      <div class="three wide field"><input type="text" placeholder="ตำแหน่ง"></div>
+      <div class="two wide field"></div>
+      <div class="three wide field"><input type="text" placeholder="ตำแหน่ง"></div>
+      <div class="two wide field"></div>
+      <div class="three wide field"><input type="text" placeholder="ตำแหน่ง"></div>
+    </div>
+    <div class="inline fields">
+      <div class="three wide field"><label class="text-center full-width">ผู้รับการสอบทาน</label></div>
+      <div class="two wide field"></div>
+      <div class="three wide field"><label class="text-center full-width">ผู้สอบทาน</label></div>
+      <div class="two wide field"></div>
+      <div class="three wide field"><label class="text-center full-width">ผู้สอบทาน</label></div>
+    </div>
+  </div>
+  <div class="ui centered row grid">
+    <div class="sixteen aligned center ">
+      <br>
+      <br>
+      <app-button-save></app-button-save>
+      <app-button-cancel routerLink="/int10/01"></app-button-cancel>
+      <br>
+      <br>
+    </div>
+  </div>
+</segment>

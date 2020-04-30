@@ -1,0 +1,453 @@
+<with-breadcrumb [breadcrumb]="breadcrumb"></with-breadcrumb>
+<segment header="ตรวจสอบรายงานเคลื่อนไหวเงินฝากคลัง" [loading]="false">
+  <div class="ui form text-center">
+    <div class="inline fields">
+      <div class="four wide field right2">
+        <label class="text-right full-width">อัพโหลดไฟล์รายงานเคลื่อนไหวเงินฝากคลัง</label>
+      </div>
+      <div class="five wide field">
+        <input id="file" type="file" name="file">
+      </div>
+      <div class="three wide field">
+        <app-button-upload></app-button-upload>
+      </div>
+    </div>
+    <div class="inline fields">
+      <div class="four wide field right2">
+        <label class="text-right full-width">อัพโหลดไฟล์ตรวจสอบข้อมูลบัญชี</label>
+      </div>
+      <div class="five wide field">
+        <input id="file" type="file" name="file">
+      </div>
+      <div class="three wide field">
+        <app-button-upload></app-button-upload>
+      </div>
+    </div>
+  </div>
+  <br>
+
+
+
+
+  <div class="ui grid">
+    <div class="sixteen wide column">
+      <div class="ui top attached tabular menu">
+        <a class="item active" data-tab="tab1">10512 บัญชีเงินฝากคลัง</a>
+        <a class="item" data-tab="second">10778 บัญชีเจ้าหนี้ อปท.</a>
+        <a class="item" data-tab="tab3">10910 บัญชีเงินประกันอื่น</a>
+        <a class="item" data-tab="tab4">10658 บัญชีเงินประกันอื่น</a>
+      </div>
+      <div class="ui bottom attached tab segment active" data-tab="tab1">
+        <br>
+        <div class="ui grid center aligned">
+          <div class="sixteen wide column">
+            กระดาษทำการตรวจสอบสำนักงานสรรพสามิตพื้นที่..................
+            <br> บัญชีเงินฝากคลัง (1101020501)
+            <br> ณ วันที่ 30 กันยายน 2560
+          </div>
+        </div>
+        <div class="ui right aligned grid">
+          <div class="sixteen wide column">
+            <app-button-edit></app-button-edit>
+
+          </div>
+        </div>
+        <br>
+        <div class="ui attached segment">
+          <div class="inline fields">
+            <div class="eight wide field ">
+              <label class="custom-label-w-25">
+                <b>วิเคราะห์เปรียบเทียบเงินฝากคลัง </b>
+              </label>
+            </div>
+          </div>
+          <br>
+
+          <div class="ui three column stackable grid">
+            <div class="seven wide column left aligned">
+              <label class="custom-label-w-25">
+                ยอดคงเหลือบัญชีเงินฝากคลังตามงบทดลองในระบบ GFMIS
+                <br> ยอดคงเหลือเงินฝากคลังตามรายงานเคลื่อนไหวเงินฝากคลัง (ZGL_RPT013)
+                <br>
+
+              </label>
+            </div>
+            <div class="three wide column right aligned">
+              <label class="custom-label-w-25">
+                <br>
+                <br>
+                <b>ส่วนต่าง</b>
+              </label>
+            </div>
+            <div class="six wide  column right aligned">
+              126,121.48
+              <br> 126,121.48
+              <br> -
+            </div>
+          </div>
+          <div class="inline fields">
+            <div class="eight wide field ">
+              <label class="custom-label-w-25">
+                <b>วิเคราะห์รายละเอียดบัญชีย่อยเงินฝากคลัง </b>
+              </label>
+            </div>
+          </div>
+          <br>
+          <table class="ui celled structured table ">
+            <thead>
+              <tr>
+                <th class="center aligned" colspan="2">1.ยอดคงเหลือเงินฝากคลังตามรายงานเคลื่อนไหวเงินฝากคลัง
+                  (ZGL_RPT013)
+                </th>
+                <th class="center aligned" rowspan="2">2.ยอดคงเหลือตามบัญชีย่อย/ทะเบียนคุม
+
+                </th>
+                <th class="center aligned" rowspan="2">3.ผลต่าง 1 - 2
+
+                </th>
+
+              </tr>
+              <tr>
+                <th class="center aligned">รหัสบัญชี
+                </th>
+                <th class="center aligned">จำนวนเงิน
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="center aligned">10512
+                </td>
+                <td class="right aligned">105,985.68
+                </td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="center aligned">10778
+                </td>
+                <td class="right aligned">135.8
+                </td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="center aligned">10910
+                </td>
+                <td class="right aligned">20,000.00
+                </td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="center aligned">10658
+                </td>
+                <td class="right aligned">25,300.00
+                </td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="center aligned">
+                  <b>รวม</b>
+                </td>
+                <td class="right aligned">
+                  <b>151,421.48 </b>
+                </td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="ui bottom attached tab segment " data-tab="second">
+
+        <br>
+        <div class="ui grid center aligned">
+          <div class="sixteen wide column">
+            กระดาษทำการตรวจสอบสำนักงานสรรพสามิตพื้นที่..................
+            <br> บัญชีเงินฝากคลัง (1101020501)
+            <br> ณ วันที่ 30 กันยายน 2560
+          </div>
+        </div>
+        <div class="ui right aligned grid">
+          <div class="sixteen wide column">
+            <app-button-edit></app-button-edit>
+          </div>
+        </div>
+        <br>
+        <div class="ui attached segment">
+          <div class="inline fields">
+            <div class="eight wide field ">
+              <label class="custom-label-w-25">
+                <b>วิเคราะห์เปรียบเทียบเจ้าหนี้ อปท.
+                </b>
+              </label>
+            </div>
+          </div>
+          <br>
+
+
+
+          <div class="ui three column stackable grid">
+            <div class="seven wide column left aligned">
+              <label class="custom-label-w-25">
+                ยอดคงเหลือบัญชีเจ้าหนี้ อปท. ตามงบทดลองในระบบ GFMIS
+                <br> ยอดคงเหลือเงินฝากคลัง 10778 ตามรายงานเคลื่อนไหวเงินฝากคลัง (ZGL_RPT013)
+                <br>
+
+              </label>
+            </div>
+            <div class="three wide column right aligned">
+              <label class="custom-label-w-25">
+                <br>
+                <br>
+                <b>ส่วนต่าง</b>
+              </label>
+            </div>
+            <div class="six wide  column right aligned">
+              135.80
+              <br> 135.80
+              <br> -
+            </div>
+          </div>
+          <br>
+          <div class="inline fields">
+            <div class="eight wide field ">
+              <label class="custom-label-w-25">
+                <b>วิเคราะห์รายละเอียดบัญชีย่อยเจ้าหนี้ อปท.
+                </b>
+              </label>
+            </div>
+          </div>
+          <br>
+
+          <div class="ui three column stackable grid">
+            <div class="seven wide column left aligned">
+              <label class="custom-label-w-25">
+                ยอดคงเหลือตามรายงานเคลื่อนไหวเงินฝากคลัง รหัส 10778
+                <br>ยอดคงเหลือเจ้าหนี้ อปท. ในทะเบียนคุม
+                <br>
+
+              </label>
+            </div>
+            <div class="three wide column right aligned">
+              <label class="custom-label-w-25">
+                <br>
+                <br>
+                <b>ส่วนต่าง</b>
+              </label>
+            </div>
+            <div class="six wide  column right aligned">
+              135.80
+              <br>
+              <br> -
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ui bottom attached tab segment" data-tab="tab3">
+
+
+
+        <br>
+        <div class="ui grid center aligned">
+          <div class="sixteen wide column">
+            กระดาษทำการตรวจสอบสำนักงานสรรพสามิตพื้นที่..................
+            <br> บัญชีเงินประกันอื่น (2112010199)
+            <br> ณ วันที่ 30 กันยายน 2560
+          </div>
+        </div>
+        <div class="ui right aligned grid">
+          <div class="sixteen wide column">
+            <app-button-edit></app-button-edit>
+
+          </div>
+        </div>
+        <br>
+        <div class="ui attached segment">
+
+          <div class="inline fields">
+            <div class="eight wide field ">
+              <label class="custom-label-w-25">
+                <b>วิเคราะห์เปรียบเทียบเงินประกันอื่น
+                </b>
+              </label>
+            </div>
+          </div>
+          <br>
+
+
+
+          <div class="ui three column stackable grid">
+            <div class="seven wide column left aligned">
+              <label class="custom-label-w-25">
+                ยอดคงเหลือบัญชีเงินประกันอื่นตามงบทดลองในระบบ GFMIS
+                <br>ยอดคงเหลือเงินฝากคลัง 10910 ตามรายงานเคลื่อนไหวเงินฝากคลัง (ZGL_RPT013)
+                <br>
+
+              </label>
+            </div>
+            <div class="three wide column right aligned">
+              <label class="custom-label-w-25">
+                <br>
+                <br>
+                <b>ส่วนต่าง</b>
+              </label>
+            </div>
+            <div class="six wide  column right aligned">
+              25,300.00
+              <br>25,300.00
+              <br> -
+            </div>
+          </div>
+          <br>
+          <div class="inline fields">
+            <div class="eight wide field ">
+              <label class="custom-label-w-25">
+                <b>วิเคราะห์รายละเอียดบัญชีย่อยเงินประกันอื่น
+                </b>
+              </label>
+            </div>
+          </div>
+          <br>
+
+          <div class="ui three column stackable grid">
+            <div class="seven wide column left aligned">
+              <label class="custom-label-w-25">
+                ยอดคงเหลือตามรายงานเคลื่อนไหวเงินฝากคลัง รหัส 10910
+                <br>ยอดคงเหลือเงินประกันอื่นในทะเบียนคุมเงินประกัน
+                <br>
+
+              </label>
+            </div>
+            <div class="three wide column right aligned">
+              <label class="custom-label-w-25">
+                <br>
+                <br>
+                <b>ส่วนต่าง</b>
+              </label>
+            </div>
+            <div class="six wide  column right aligned">
+              25,300.00
+              <br>
+              <br> -
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ui bottom attached tab segment" data-tab="tab4">
+        <br>
+        <div class="ui grid center aligned">
+          <div class="sixteen wide column">
+            กระดาษทำการตรวจสอบสำนักงานสรรพสามิตพื้นที่..................
+            <br> บัญชีเงินสินบนและเงินรางวัล (2112010199)
+            <br> ณ วันที่ 30 กันยายน 2560
+          </div>
+        </div>
+        <div class="ui right aligned grid">
+          <div class="sixteen wide column">
+            <app-button-edit></app-button-edit>
+          </div>
+        </div>
+        <br>
+        <div class="ui attached segment">
+
+          <div class="inline fields">
+            <div class="eight wide field ">
+              <label class="custom-label-w-25">
+                <b>วิเคราะห์เปรียบเทียบเงินสินบนและเงินรางวัล</b>
+              </label>
+            </div>
+          </div>
+          <br>
+
+
+
+          <div class="ui three column stackable grid">
+            <div class="seven wide column left aligned">
+              <label class="custom-label-w-25">
+                ยอดคงเหลือบัญชีเงินสินบนและเงินรางวัลตามงบทดลองในระบบ GFMIS
+                <br> ยอดคงเหลือเงินฝากคลัง 10658 ตามรายงานเคลื่อนไหวเงินฝากคลัง (ZGL_RPT013)
+                <br>
+              </label>
+            </div>
+            <div class="three wide column right aligned">
+              <label class="custom-label-w-25">
+                <br>
+                <br>
+                <b>ส่วนต่าง</b>
+              </label>
+            </div>
+            <div class="six wide  column right aligned">
+              20,000.00
+              <br>20,000.00
+              <br> -
+            </div>
+          </div>
+          <br>
+          <div class="inline fields">
+            <div class="eight wide field ">
+              <label class="custom-label-w-25">
+                <b>วิเคราะห์รายละเอียดบัญชีย่อยเงินสินบนและเงินรางวัล </b>
+              </label>
+            </div>
+          </div>
+          <br>
+
+          <div class="ui three column stackable grid">
+            <div class="seven wide column left aligned">
+              <label class="custom-label-w-25">
+                ยอดคงเหลือตามรายงานเคลื่อนไหวเงินฝากคลัง รหัส 10658
+                <br>ยอดคงเหลือเงินสินบนและเงินรางวัลในทะเบียนคุม
+                <br>
+              </label>
+            </div>
+            <div class="three wide column right aligned">
+              <label class="custom-label-w-25">
+                <br>
+                <br>
+                <b>ส่วนต่าง</b>
+              </label>
+            </div>
+            <div class="six wide  column right aligned">
+              20,000.00
+              <br>20,000.00
+              <br> -
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sixteen wide column">
+        <div class="ui centered grid">
+          <div class="ui form fourteen wide column">
+            <div class="inline fields">
+              <div class="four wide field">
+                <label class="text-right full-width">ข้อตรวจพบ/ข้อสังเกต <br> (ข้อเท็จจริง/Condition) :</label>
+              </div>
+              <div class="ten  wide field">
+                <textarea rows="3" style="width: 100%;"></textarea>
+              </div>
+            </div>
+            <div class="inline fields">
+              <div class="four wide field">
+                <label class="text-right full-width">สิ่งที่ควรจะเป็น <br> (หลักเกณฑ์/Criteria)
+                  :</label>
+              </div>
+              <div class="ten  wide field">
+                <textarea rows="3" style="width: 100%;"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ui grid">
+        <div class="row centered">
+          <app-button-save></app-button-save>
+          <app-button-back routerLink="/int10/01"></app-button-back>
+        </div>
+      </div>
+    </div>
+  </div>
+</segment>
